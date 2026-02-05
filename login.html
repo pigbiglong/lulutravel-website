@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - lulutravel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #1a5f3c 0%, #2d8a5e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .auth-container {
+            background: white;
+            max-width: 440px;
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .auth-header {
+            background: #f8f6f3;
+            padding: 30px 40px 20px;
+            text-align: center;
+        }
+
+        .auth-header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            color: #1a3a2f;
+            margin-bottom: 8px;
+        }
+
+        .auth-header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .auth-tabs {
+            display: flex;
+            border-bottom: 1px solid #eee;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 16px;
+            text-align: center;
+            background: none;
+            border: none;
+            font-size: 15px;
+            font-weight: 500;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .auth-tab.active {
+            color: #1a5f3c;
+        }
+
+        .auth-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #1a5f3c;
+        }
+
+        .auth-form {
+            padding: 30px 40px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e0e5e3;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #1a7a65;
+            box-shadow: 0 0 0 4px rgba(26, 122, 101, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #1a5f3c 0%, #2d8a5e 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(26, 95, 60, 0.3);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .footer-link {
+            text-align: center;
+            margin-top: 25px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .footer-link a {
+            color: #1a5f3c;
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .footer-link a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            background: #fee;
+            color: #c00;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .success-message {
+            background: #efe;
+            color: #060;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .logged-in-view {
+            display: none;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .logged-in-view.show {
+            display: block;
+        }
+
+        .logged-in-view .icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .logged-in-view h2 {
+            color: #1a5f3c;
+            margin-bottom: 15px;
+        }
+
+        .logged-in-view p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .login-form, .register-form, .forgot-form {
+            display: none;
+        }
+
+        .login-form.active, .register-form.active, .forgot-form.active {
+            display: block;
+        }
+
+        .back-to-login {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .back-to-login a {
+            color: #1a5f3c;
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .back-to-login a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-header">
+            <h1>✈️ lulutravel</h1>
+            <p>Sign in to manage your bookings</p>
+        </div>
+
+        <div class="auth-tabs" id="authTabs">
+            <button class="auth-tab active" data-tab="login">Sign In</button>
+            <button class="auth-tab" data-tab="register">Create Account</button>
+        </div>
+
+        <div class="auth-form">
+            <div class="error-message" id="errorMessage"></div>
+            <div class="success-message" id="successMessage"></div>
+
+            <!-- Login Form -->
+            <form class="login-form active" id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" placeholder="your@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+
+                <button type="submit" class="submit-btn">Sign In →</button>
+
+                <div class="footer-link">
+                    <a id="forgotPasswordLink" href="javascript:void(0)">Forgot your password?</a>
+                </div>
+            </form>
+
+            <!-- Register Form -->
+            <form class="register-form" id="registerForm">
+                <div class="form-group">
+                    <label for="registerName">Full Name</label>
+                    <input type="text" id="registerName" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="registerEmail">Email Address</label>
+                    <input type="email" id="registerEmail" placeholder="your@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" placeholder="Create a password (min 6 characters)" required minlength="6">
+                </div>
+
+                <div class="form-group">
+                    <label for="registerConfirm">Confirm Password</label>
+                    <input type="password" id="registerConfirm" placeholder="Confirm your password" required>
+                </div>
+
+                <button type="submit" class="submit-btn">Create Account →</button>
+            </form>
+
+            <!-- Forgot Password Form -->
+            <form class="forgot-form" id="forgotForm">
+                <div class="form-group">
+                    <label for="forgotEmail">Email Address</label>
+                    <input type="email" id="forgotEmail" placeholder="your@email.com" required>
+                </div>
+
+                <button type="submit" class="submit-btn">Send Reset Link →</button>
+
+                <div class="back-to-login">
+                    <a id="backToLogin" href="javascript:void(0)">← Back to Sign In</a>
+                </div>
+            </form>
+
+            <!-- Logged In View -->
+            <div class="logged-in-view" id="loggedInView">
+                <div class="icon">✅</div>
+                <h2>Welcome back!</h2>
+                <p id="userEmail">user@email.com</p>
+                <a href="profile.html" class="submit-btn" style="display: inline-block; text-decoration: none; padding: 14px 30px;">Go to My Account →</a>
+                <br><br>
+                <div class="footer-link">
+                    <a id="logoutBtn" href="javascript:void(0)">Sign Out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 本地存储模拟（用于演示，无需服务器）
+        const localAuth = {
+            users: JSON.parse(localStorage.getItem('lulutravel_users') || '[]'),
+            currentUser: JSON.parse(localStorage.getItem('lulutravel_currentUser') || 'null'),
+            saveUsers: function() { localStorage.setItem('lulutravel_users', JSON.stringify(this.users)); },
+            saveCurrentUser: function() { localStorage.setItem('lulutravel_currentUser', JSON.stringify(this.currentUser)); },
+            signUp: function(email, password, name) {
+                if (this.users.find(u => u.email === email)) return { error: { message: 'Email already registered' } };
+                const user = { email, password, name, id: Date.now() };
+                this.users.push(user);
+                this.saveUsers();
+                this.currentUser = { email, name, id: user.id };
+                this.saveCurrentUser();
+                return { data: { user: this.currentUser, session: { user: this.currentUser } }, error: null };
+            },
+            signIn: function(email, password) {
+                const user = this.users.find(u => u.email === email && u.password === password);
+                if (!user) return { error: { message: 'Invalid email or password' } };
+                this.currentUser = { email: user.email, name: user.name, id: user.id };
+                this.saveCurrentUser();
+                return { data: { user: this.currentUser, session: { user: this.currentUser } }, error: null };
+            },
+            signOut: function() { this.currentUser = null; this.saveCurrentUser(); return { error: null }; },
+            getSession: function() { return { data: { session: this.currentUser ? { user: this.currentUser } : null } }; },
+            resetPassword: function(email) {
+                const user = this.users.find(u => u.email === email);
+                if (!user) return { error: { message: 'Email not found' } };
+                return { error: null };
+            }
+        };
+
+        // 包装器统一接口（使用本地存储）
+        const auth = {
+            signUp: async (params) => localAuth.signUp(params.email, params.password, params.options && params.options.data ? params.options.data.name : ''),
+            signIn: async (params) => localAuth.signIn(params.email, params.password),
+            signOut: async () => localAuth.signOut(),
+            getSession: async () => localAuth.getSession(),
+            resetPassword: async (email) => localAuth.resetPassword(email),
+            onAuthStateChange: (cb) => null
+        };
+
+        // Tab switching
+        document.querySelectorAll('.auth-tab').forEach(function(tab) {
+            tab.addEventListener('click', function() {
+                const tabName = this.dataset.tab;
+                document.querySelectorAll('.auth-tab').forEach(function(t) { t.classList.remove('active'); });
+                this.classList.add('active');
+                document.querySelector('.login-form').classList.remove('active');
+                document.querySelector('.register-form').classList.remove('active');
+                document.querySelector('.forgot-form').classList.remove('active');
+                document.querySelector('.' + tabName + '-form').classList.add('active');
+                hideMessages();
+            });
+        });
+
+        function showError(msg) {
+            const el = document.getElementById('errorMessage');
+            el.textContent = msg;
+            el.classList.add('show');
+        }
+
+        function showSuccess(msg) {
+            const el = document.getElementById('successMessage');
+            el.textContent = msg;
+            el.classList.add('show');
+        }
+
+        function hideMessages() {
+            document.getElementById('errorMessage').classList.remove('show');
+            document.getElementById('successMessage').classList.remove('show');
+        }
+
+        function showLoggedInView(user) {
+            document.querySelector('.login-form').classList.remove('active');
+            document.querySelector('.register-form').classList.remove('active');
+            document.querySelector('.forgot-form').classList.remove('active');
+            document.getElementById('authTabs').style.display = 'none';
+            document.getElementById('userEmail').textContent = user.email;
+            document.getElementById('loggedInView').classList.add('show');
+            hideMessages();
+        }
+
+        function showLoginView() {
+            document.getElementById('loggedInView').classList.remove('show');
+            document.getElementById('authTabs').style.display = 'flex';
+            document.querySelectorAll('.auth-tab').forEach(function(t) { t.classList.remove('active'); });
+            document.querySelector('.auth-tab[data-tab="login"]').classList.add('active');
+            document.querySelector('.login-form').classList.add('active');
+            document.querySelector('.register-form').classList.remove('active');
+            document.querySelector('.forgot-form').classList.remove('active');
+            hideMessages();
+        }
+
+        // Check auth
+        auth.getSession().then(function(_ref) {
+            var data = _ref.data;
+            var session = data.session;
+            if (session) showLoggedInView(session.user);
+        });
+
+        // Login
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            hideMessages();
+            var btn = this.querySelector('.submit-btn');
+            var originalText = btn.textContent;
+            btn.textContent = 'Signing in...';
+            btn.disabled = true;
+
+            try {
+                var ref = await auth.signIn({
+                    email: document.getElementById('loginEmail').value,
+                    password: document.getElementById('loginPassword').value
+                });
+                var error = ref.error;
+                var data = ref.data;
+                if (error) {
+                    showError(error.message);
+                } else {
+                    showLoggedInView(data.user);
+                }
+            } catch (err) {
+                showError('An error occurred. Please try again.');
+            } finally {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
+        });
+
+        // Register
+        document.getElementById('registerForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            hideMessages();
+            var password = document.getElementById('registerPassword').value;
+            var confirm = document.getElementById('registerConfirm').value;
+            if (password !== confirm) {
+                showError('Passwords do not match.');
+                return;
+            }
+            if (password.length < 6) {
+                showError('Password must be at least 6 characters.');
+                return;
+            }
+            var btn = this.querySelector('.submit-btn');
+            var originalText = btn.textContent;
+            btn.textContent = 'Creating account...';
+            btn.disabled = true;
+
+            try {
+                var ref = await auth.signUp({
+                    email: document.getElementById('registerEmail').value,
+                    password: password,
+                    options: { data: { name: document.getElementById('registerName').value } }
+                });
+                var error = ref.error;
+                var data = ref.data;
+                if (error) {
+                    showError(error.message);
+                } else {
+                    if (data.session) {
+                        showLoggedInView(data.user);
+                        showSuccess('Account created successfully!');
+                    } else {
+                        showSuccess('Account created! Please check your email to verify.');
+                        this.reset();
+                    }
+                }
+            } catch (err) {
+                showError('An error occurred. Please try again.');
+            } finally {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
+        });
+
+        // Forgot Password Link
+        document.getElementById('forgotPasswordLink').addEventListener('click', function() {
+            hideMessages();
+            document.querySelectorAll('.auth-tab').forEach(function(t) { t.classList.remove('active'); });
+            document.querySelector('.login-form').classList.remove('active');
+            document.querySelector('.register-form').classList.remove('active');
+            document.querySelector('.forgot-form').classList.add('active');
+            // Pre-fill email if available
+            var loginEmail = document.getElementById('loginEmail').value;
+            if (loginEmail) {
+                document.getElementById('forgotEmail').value = loginEmail;
+            }
+        });
+
+        // Back to Login
+        document.getElementById('backToLogin').addEventListener('click', function() {
+            hideMessages();
+            document.querySelectorAll('.auth-tab').forEach(function(t) { t.classList.remove('active'); });
+            document.querySelector('.auth-tab[data-tab="login"]').classList.add('active');
+            document.querySelector('.forgot-form').classList.remove('active');
+            document.querySelector('.login-form').classList.add('active');
+        });
+
+        // Forgot Password Submit
+        document.getElementById('forgotForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            hideMessages();
+            var btn = this.querySelector('.submit-btn');
+            var originalText = btn.textContent;
+            btn.textContent = 'Sending...';
+            btn.disabled = true;
+
+            try {
+                var ref = await auth.resetPassword(document.getElementById('forgotEmail').value);
+                if (ref.error) {
+                    showError(ref.error.message);
+                } else {
+                    showSuccess('Password reset link sent! Please check your email.');
+                    this.reset();
+                }
+            } catch (err) {
+                showError('An error occurred. Please try again.');
+            } finally {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
+        });
+
+        // Logout
+        document.getElementById('logoutBtn').addEventListener('click', async function() {
+            var result = await auth.signOut();
+            if (result.error) {
+                showError(result.error.message);
+            } else {
+                showLoginView();
+                showSuccess('You have been signed out.');
+            }
+        });
+
+        // Auth state change not needed for local auth
+    </script>
+</body>
+</html>

@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lulutravel | Premium China Tours</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500&family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-forest: #1a3a2f;
+            --color-bamboo: #3d5a47;
+            --color-ink: #2c3e35;
+            --color-cream: #f8f6f3;
+            --color-sand: #e8e4dd;
+            --color-gold: #c9a962;
+            --color-white: #ffffff;
+            --color-text: #333333;
+            --color-text-light: #666666;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-serif-cn: 'Noto Serif SC', serif;
+            --font-sans: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--color-text);
+            background-color: var(--color-cream);
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            color: var(--color-white);
+            text-decoration: none;
+            transition: all 0.4s ease;
+        }
+
+        nav.scrolled .logo {
+            color: var(--color-forest);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav.scrolled .nav-links a {
+            color: var(--color-text);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--color-gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--color-white);
+            color: var(--color-forest) !important;
+            padding: 0.75rem 1.5rem;
+            border-radius: 2px;
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--color-gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            min-height: 700px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=1920&q=80') center/cover no-repeat;
+            filter: brightness(0.85);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(26, 58, 47, 0.7) 0%, rgba(26, 58, 47, 0.4) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 900px;
+            padding: 0 5%;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 0.3em;
+            color: var(--color-gold);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            font-family: var(--font-serif-cn);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 400;
+            color: var(--color-white);
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-tagline {
+            font-size: 1.3rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 3rem;
+            letter-spacing: 0.05em;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--color-gold);
+            color: var(--color-forest);
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hero-cta:hover {
+            background: var(--color-white);
+            transform: translateY(-2px);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--color-white);
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            opacity: 0.7;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-subtitle {
+            font-family: var(--font-serif);
+            font-size: 0.9rem;
+            letter-spacing: 0.3em;
+            color: var(--color-gold);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-family: var(--font-serif-cn);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 400;
+            color: var(--color-forest);
+        }
+
+        /* Trips Section */
+        .trips {
+            background: var(--color-cream);
+        }
+
+        .trips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .trip-card {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .trip-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.6s ease;
+        }
+
+        .trip-card:hover .trip-image {
+            transform: scale(1.05);
+        }
+
+        .trip-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(26, 58, 47, 0.95) 0%, rgba(26, 58, 47, 0.3) 100%);
+        }
+
+        .trip-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            color: var(--color-white);
+        }
+
+        .trip-category {
+            font-family: var(--font-serif);
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            color: var(--color-gold);
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        .trip-title {
+            font-family: var(--font-serif-cn);
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .trip-desc {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .trip-link {
+            color: var(--color-gold);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .trip-link:hover {
+            gap: 1rem;
+        }
+
+        /* Why Choose Us */
+        .why-us {
+            background: var(--color-forest);
+            color: var(--color-white);
+        }
+
+        .why-us .section-subtitle {
+            color: var(--color-gold);
+        }
+
+        .why-us .section-title {
+            color: var(--color-white);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-item {
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-title {
+            font-family: var(--font-serif-cn);
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .feature-desc {
+            font-size: 0.95rem;
+            opacity: 0.85;
+            line-height: 1.8;
+        }
+
+        /* Stats */
+        .stats {
+            background: var(--color-sand);
+            padding: 4rem 5%;
+        }
+
+        .stats-grid {
+            display: flex;
+            justify-content: center;
+            gap: 6rem;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: var(--font-serif);
+            font-size: 3.5rem;
+            font-weight: 500;
+            color: var(--color-forest);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            letter-spacing: 0.1em;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: var(--color-cream);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: var(--color-white);
+            padding: 2.5rem;
+            border-radius: 4px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .testimonial-text {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--color-text);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--color-forest);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-white);
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+        }
+
+        .author-info {
+            flex: 1;
+        }
+
+        .author-name {
+            font-weight: 500;
+            color: var(--color-forest);
+        }
+
+        .author-location {
+            font-size: 0.85rem;
+            color: var(--color-text-light);
+        }
+
+        /* CTA Section */
+        .cta {
+            background: url('https://images.unsplash.com/photo-1547989453-11e67f438a63?w=1920&q=80') center/cover no-repeat;
+            position: relative;
+            text-align: center;
+            padding: 8rem 5%;
+        }
+
+        .cta-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 58, 47, 0.85);
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 10;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-family: var(--font-serif-cn);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 400;
+            color: var(--color-white);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-desc {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--color-gold);
+            color: var(--color-forest);
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover {
+            background: var(--color-white);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-forest);
+            color: var(--color-white);
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+        }
+
+        .footer-brand {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .footer-desc {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .footer-social a:hover {
+            background: var(--color-gold);
+            border-color: var(--color-gold);
+            color: var(--color-forest);
+        }
+
+        .footer-title {
+            font-family: var(--font-serif-cn);
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            section {
+                padding: 4rem 5%;
+            }
+
+            .trips-grid,
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                gap: 3rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-social {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#" class="logo">lulutravel</a>
+        <ul class="nav-links">
+            <li><a href="#trips">Our Trips</a></li>
+            <li><a href="#why-us">Why Us</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="login.html" class="nav-cta">Sign In</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-subtitle">Premium China Tours</p>
+            <h1 class="hero-title">Discover the Real China</h1>
+            <p class="hero-tagline">Small group tours (2-8 people) · Expert local guides · Hidden gems you won't find online</p>
+            <a href="#trips" class="hero-cta">
+                Explore Our Trips
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+        <div class="hero-scroll">SCROLL TO DISCOVER</div>
+    </section>
+
+    <!-- Trips Section -->
+    <section class="trips" id="trips">
+        <div class="section-header">
+            <p class="section-subtitle">Curated Experiences</p>
+            <h2 class="section-title">Choose Your Adventure</h2>
+        </div>
+        <div class="trips-grid">
+            <div class="trip-card">
+                <div class="trip-image" style="background-image: url('https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=800&q=80')"></div>
+                <div class="trip-overlay"></div>
+                <div class="trip-content">
+                    <p class="trip-category">8 Days</p>
+                    <h3 class="trip-title">Classic China</h3>
+                    <p class="trip-desc">Beijing · Xi'an · Shanghai. The essentials, done right. Skip the crowds, see the real highlights.</p>
+                    <a href="product-classic.html" class="trip-link">
+                        View & Book
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="trip-card">
+                <div class="trip-image" style="background-image: url('https://images.unsplash.com/photo-1569949380638-555a28b7475f?w=800&q=80')"></div>
+                <div class="trip-overlay"></div>
+                <div class="trip-content">
+                    <p class="trip-category">6 Days</p>
+                    <h3 class="trip-title">Culinary Journey</h3>
+                    <p class="trip-desc">Sichuan · Chengdu. Giant pandas, ancient temples, and the best Sichuan cuisine you've ever tasted.</p>
+                    <a href="product-culinary.html" class="trip-link">
+                        View & Book
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="trip-card">
+                <div class="trip-image" style="background-image: url('https://images.unsplash.com/photo-1580477667995-2b94f01c9516?w=800&q=80')"></div>
+                <div class="trip-overlay"></div>
+                <div class="trip-content">
+                    <p class="trip-category">7 Days</p>
+                    <h3 class="trip-title">Nature & Wellness</h3>
+                    <p class="trip-desc">Zhangjiajie · Huangshan. Ancient villages, misty mountains, and peaceful retreats away from it all.</p>
+                    <a href="product-nature.html" class="trip-link">
+                        View & Book
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-us" id="why-us">
+        <div class="section-header">
+            <p class="section-subtitle">Why Travel With Us</p>
+            <h2 class="section-title">The lulutravel Difference</h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon">🎯</div>
+                <h3 class="feature-title">Small Groups Only</h3>
+                <p class="feature-desc">2-8 people max. No crowded buses. Real connections with your guide and fellow travelers.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🏆</div>
+                <h3 class="feature-title">Local Experts</h3>
+                <p class="feature-desc">Our guides grew up in China. They'll take you to places tourists never find and share stories you'd miss.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🛡️</div>
+                <h3 class="feature-title">All-Inclusive</h3>
+                <p class="feature-desc">Hotels, meals, transport, tickets — all covered. Just show up. We handle everything else.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">💬</div>
+                <h3 class="feature-title">24/7 Support</h3>
+                <p class="feature-desc">Questions before you go? Issues on the road? Reach us anytime. We're here for you.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Happy Travelers</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Expert Guides</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">Recommend Us</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-header">
+            <p class="section-subtitle">What They Say</p>
+            <h2 class="section-title">Traveler Reviews</h2>
+        </div>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Best trip ever. Our guide Peter showed us parts of Beijing we never would have found on our own. The Great Wall at sunset was magical."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">S</div>
+                    <div class="author-info">
+                        <div class="author-name">Sarah M.</div>
+                        <div class="author-location">New York, USA</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Finally, a China tour that doesn't feel like being herded around. The food tour in Chengdu was incredible. Already planning my next trip!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">J</div>
+                    <div class="author-info">
+                        <div class="author-name">James T.</div>
+                        <div class="author-location">London, UK</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Zhangjiajie was a dream. lulutravel handled everything perfectly. No hidden fees, no stress. Just an amazing experience."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">M</div>
+                    <div class="author-info">
+                        <div class="author-name">Maria K.</div>
+                        <div class="author-location">Sydney, Australia</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="contact">
+        <div class="cta-overlay"></div>
+        <div class="cta-content">
+            <h2 class="cta-title">Ready to Discover China?</h2>
+            <p class="cta-desc">Small groups, local experts, unforgettable experiences. Book your adventure today and get 10% off your first trip.</p>
+            <a href="#" class="cta-btn">
+                Start Your Journey
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <div class="footer-brand">lulutravel</div>
+                <p class="footer-desc">Premium small-group tours of China. Curated experiences, expert guides, and memories that last a lifetime.</p>
+                <div class="footer-social">
+                    <a href="#">Instagram</a>
+                    <a href="#">YouTube</a>
+                    <a href="#">TikTok</a>
+                </div>
+            </div>
+            <div>
+                <h4 class="footer-title">Tours</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Classic China</a></li>
+                    <li><a href="#">Culinary Journey</a></li>
+                    <li><a href="#">Nature & Wellness</a></li>
+                    <li><a href="#">Custom Tours</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title">Company</h4>
+                <ul class="footer-links">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="#">Our Guides</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title">Support</h4>
+                <ul class="footer-links">
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="booking.html">Booking Info</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="terms.html">Terms</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 lulutravel. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

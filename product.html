@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品详情 | 隐逸私人定制旅行</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #1a3a2f;
+            --color-primary-dark: #0f241c;
+            --color-accent: #c9a962;
+            --color-text: #333;
+            --color-text-light: #666;
+            --color-white: #fff;
+            --color-cream: #faf9f7;
+            --font-serif-cn: 'Noto Serif SC', serif;
+            --font-serif-en: 'Cormorant Garamond', serif;
+            --transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-serif-cn);
+            color: var(--color-text);
+            background-color: var(--color-cream);
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 0.3em;
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--color-accent);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 24px;
+            height: 1px;
+            background: var(--color-primary);
+            margin: 6px 0;
+            transition: var(--transition);
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 10rem 5% 6rem;
+            background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+            text-align: center;
+            color: var(--color-white);
+        }
+
+        .page-label {
+            font-family: var(--font-serif-en);
+            font-size: 0.75rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            opacity: 0.7;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .page-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+        }
+
+        .page-desc {
+            font-size: 1rem;
+            opacity: 0.7;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 8rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-detail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            margin-bottom: 10rem;
+            align-items: start;
+        }
+
+        .product-detail:last-child {
+            margin-bottom: 0;
+        }
+
+        .product-detail:nth-child(even) {
+            direction: rtl;
+        }
+
+        .product-detail:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .product-visual {
+            position: sticky;
+            top: 120px;
+        }
+
+        .product-image-wrapper {
+            position: relative;
+            aspect-ratio: 4/5;
+            overflow: hidden;
+            background: var(--color-primary);
+        }
+
+        .product-image-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 60%, rgba(26, 58, 47, 0.6));
+            z-index: 1;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .product-image-wrapper:hover .product-img {
+            transform: scale(1.03);
+            opacity: 0.9;
+        }
+
+        .product-duration {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 0.8rem 1.5rem;
+            z-index: 2;
+        }
+
+        .duration-label {
+            font-family: var(--font-serif-en);
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--color-text-light);
+            display: block;
+        }
+
+        .duration-value {
+            font-size: 1.2rem;
+            color: var(--color-primary);
+            letter-spacing: 0.1em;
+        }
+
+        .product-content {
+            padding-top: 2rem;
+        }
+
+        .product-route {
+            font-family: var(--font-serif-en);
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .product-name {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            color: var(--color-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .product-subtitle {
+            font-family: var(--font-serif-en);
+            font-size: 1rem;
+            font-style: italic;
+            color: var(--color-text-light);
+            margin-bottom: 2rem;
+            letter-spacing: 0.05em;
+        }
+
+        .product-description {
+            font-size: 1rem;
+            color: var(--color-text-light);
+            line-height: 2;
+            margin-bottom: 2.5rem;
+        }
+
+        .highlights-title {
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            color: var(--color-primary);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .highlights-list {
+            list-style: none;
+            margin-bottom: 3rem;
+        }
+
+        .highlights-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            color: var(--color-text);
+            line-height: 1.8;
+        }
+
+        .highlights-list li::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+            font-size: 0.75rem;
+            top: 0.1rem;
+        }
+
+        .product-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(26, 58, 47, 0.1);
+        }
+
+        .product-price {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .price-label {
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+            color: var(--color-text-light);
+            text-transform: uppercase;
+            margin-bottom: 0.3rem;
+        }
+
+        .price-value {
+            font-family: var(--font-serif-en);
+            font-size: 1.8rem;
+            color: var(--color-primary);
+            letter-spacing: 0.05em;
+        }
+
+        .price-note {
+            font-size: 0.75rem;
+            color: var(--color-text-light);
+            margin-top: 0.3rem;
+        }
+
+        .btn-inquiry {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--color-primary);
+            color: var(--color-white);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            transition: var(--transition);
+            border: 1px solid var(--color-primary);
+            cursor: pointer;
+        }
+
+        .btn-inquiry:hover {
+            background: transparent;
+            color: var(--color-primary);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--color-primary);
+            padding: 6rem 5%;
+            text-align: center;
+            color: var(--color-white);
+        }
+
+        .cta-title {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-text {
+            font-size: 1rem;
+            opacity: 0.7;
+            max-width: 500px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.8;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            border: 1px solid var(--color-accent);
+            color: var(--color-accent);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.3em;
+            transition: var(--transition);
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .btn-cta:hover {
+            background: var(--color-accent);
+            color: var(--color-primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-primary-dark);
+            color: var(--color-white);
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 1.2rem;
+            letter-spacing: 0.3em;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .footer-copy {
+            font-size: 0.75rem;
+            opacity: 0.5;
+            letter-spacing: 0.1em;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .animate-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .product-detail {
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .page-header {
+                padding: 8rem 5% 4rem;
+            }
+
+            .products-section {
+                padding: 4rem 5%;
+            }
+
+            .product-detail {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                margin-bottom: 6rem;
+            }
+
+            .product-detail:nth-child(even) {
+                direction: ltr;
+            }
+
+            .product-visual {
+                position: relative;
+                top: 0;
+            }
+
+            .product-content {
+                padding-top: 0;
+            }
+
+            .product-meta {
+                flex-direction: column;
+                gap: 1.5rem;
+                align-items: flex-start;
+            }
+
+            .btn-inquiry {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="index.html" class="logo">隐逸</a>
+        <ul class="nav-links">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="#products">目的地</a></li>
+            <li><a href="index.html#contact">联系</a></li>
+        </ul>
+        <button class="mobile-menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <span class="page-label">Destinations</span>
+        <h1 class="page-title">臻选旅程</h1>
+        <p class="page-desc">三条精心设计的深度游路线，带您领略中国的多元魅力</p>
+    </header>
+
+    <!-- Products Section -->
+    <section class="products-section" id="products">
+        
+        <!-- Product 1: Imperial Echoes -->
+        <article class="product-detail animate-in">
+            <div class="product-visual">
+                <div class="product-image-wrapper">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 1000'><rect fill='%231a3a2f' width='800' height='1000'/><path fill='%232d5a4a' opacity='0.4' d='M0 500Q200 400 400 550T800 450V1000H0Z'/><rect x='100' y='700' width='200' height='200' fill='%23c9a962' opacity='0.2'/><rect x='500' y='600' width='150' height='300' fill='%23c9a962' opacity='0.15'/></svg>" alt="Imperial Echoes" class="product-img">
+                    <div class="product-duration">
+                        <span class="duration-label">Duration</span>
+                        <span class="duration-value">12 Days</span>
+                    </div>
+                </div>
+            </div>
+            <div class="product-content">
+                <p class="product-route">Beijing → Xi'an → Suzhou → Shanghai</p>
+                <h2 class="product-name">Imperial Echoes</h2>
+                <p class="product-subtitle">The Grand Heritage Journey</p>
+                <p class="product-description">
+                    穿越千年时光，从紫禁城的宏伟到江南水乡的婉约。这条路线串联起中国最具代表性的历史名城，让您深入感受华夏文明的深厚底蕴与当代活力的完美交融。
+                </p>
+                <h3 class="highlights-title">旅程亮点</h3>
+                <ul class="highlights-list">
+                    <li>私人导览故宫博物院，探访未对公众开放的珍藏殿堂</li>
+                    <li>西安兵马俑专属讲解员陪同，深度解读秦代文明</li>
+                    <li>苏州园林品茗听曲，体验正宗昆曲艺术与苏式生活</li>
+                    <li>上海外滩私人游艇晚宴，尽览浦江两岸璀璨夜景</li>
+                </ul>
+                <div class="product-meta">
+                    <div class="product-price">
+                        <span class="price-label">Starting from</span>
+                        <span class="price-value">$3,800</span>
+                        <span class="price-note">每人 / 基于双人出行</span>
+                    </div>
+                    <a href="#inquiry" class="btn-inquiry">询盘</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- Product 2: Culinary Odyssey -->
+        <article class="product-detail animate-in">
+            <div class="product-visual">
+                <div class="product-image-wrapper">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 1000'><rect fill='%231a3a2f' width='800' height='1000'/><circle cx='600' cy='300' r='150' fill='%23c9a962' opacity='0.1'/><path fill='%232d5a4a' opacity='0.3' d='M0 800Q300 700 600 850T800 750V1000H0Z'/><circle cx='200' cy='700' r='80' fill='%23c9a962' opacity='0.2'/></svg>" alt="Culinary Odyssey" class="product-img">
+                    <div class="product-duration">
+                        <span class="duration-label">Duration</span>
+                        <span class="duration-value">10 Days</span>
+                    </div>
+                </div>
+            </div>
+            <div class="product-content">
+                <p class="product-route">Chengdu → Shunde → Chaoshan</p>
+                <h2 class="product-name">Culinary Odyssey</h2>
+                <p class="product-subtitle">A Feast for the Senses</p>
+                <p class="product-description">
+                    从川菜的麻辣鲜香到粤菜的精致细腻，开启一场舌尖上的中国之旅。深入美食之都的街巷市井，与星级大厨面对面，探索中华饮食文化的无穷魅力。
+                </p>
+                <h3 class="highlights-title">旅程亮点</h3>
+                <ul class="highlights-list">
+                    <li>成都川菜名厨私厨体验，学习正宗麻婆豆腐与宫保鸡丁</li>
+                    <li>顺德寻味之旅，拜访美食之乡的隐世名店与私房菜馆</li>
+                    <li>潮汕牛肉火锅与工夫茶深度体验，感受最地道的潮人生活</li>
+                    <li>探访当地市集，亲手挑选食材并参与烹饪课程</li>
+                </ul>
+                <div class="product-meta">
+                    <div class="product-price">
+                        <span class="price-label">Starting from</span>
+                        <span class="price-value">$2,200</span>
+                        <span class="price-note">每人 / 基于双人出行</span>
+                    </div>
+                    <a href="#inquiry" class="btn-inquiry">询盘</a>
+                </div>
+            </div>
+        </article>
+
+        <!-- Product 3: Nature's Masterpiece -->
+        <article class="product-detail animate-in">
+            <div class="product-visual">
+                <div class="product-image-wrapper">
+                    <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 1000'><rect fill='%231a3a2f' width='800' height='1000'/><path fill='%232d5a4a' opacity='0.5' d='M0 300L200 150L400 350L600 200L800 300V1000H0Z'/><path fill='%23c9a962' opacity='0.15' d='M0 600Q400 500 800 650V1000H0Z'/></svg>" alt="Nature's Masterpiece" class="product-img">
+                    <div class="product-duration">
+                        <span class="duration-label">Duration</span>
+                        <span class="duration-value">9 Days</span>
+                    </div>
+                </div>
+            </div>
+            <div class="product-content">
+                <p class="product-route">Guilin → Yangshuo → Zhangjiajie</p>
+                <h2 class="product-name">Nature's Masterpiece</h2>
+                <p class="product-subtitle">Where Mountains Meet the Sky</p>
+                <p class="product-description">
+                    置身于如诗如画的山水之间，感受大自然的鬼斧神工。从漓江的烟雨朦胧到张家界的天门奇观，这是一场洗涤心灵、回归自然的诗意旅程。
+                </p>
+                <h3 class="highlights-title">旅程亮点</h3>
+                <ul class="highlights-list">
+                    <li>漓江私人竹筏漂流，独享晨曦中的山水画卷</li>
+                    <li>阳朔田园骑行，穿梭于喀斯特峰丛与古村落之间</li>
+                    <li>张家界国家森林公园VIP通道，避开人群尽览奇峰</li>
+                    <li>入住悬崖景观酒店，在云雾缭绕中入眠</li>
+                </ul>
+                <div class="product-meta">
+                    <div class="product-price">
+                        <span class="price-label">Starting from</span>
+                        <span class="price-value">$2,900</span>
+                        <span class="price-note">每人 / 基于双人出行</span>
+                    </div>
+                    <a href="#inquiry" class="btn-inquiry">询盘</a>
+                </div>
+            </div>
+        </article>
+
+    </section>
+
+    <!-- Booking Section -->
+    <section class="cta-section" id="inquiry">
+        <h2 class="cta-title">开启您的专属旅程</h2>
+        <p class="cta-text">选择适合您的出行方式</p>
+        <div style="display: flex; gap: 20px; justify-content: center; margin-top: 30px; flex-wrap: wrap;">
+            <button class="btn-cta" onclick="openBookingModal()">立即预订</button>
+            <a href="booking.html" class="btn-cta" style="background: transparent; border: 2px solid white;">询盘咨询</a>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 2000; display: none; justify-content: center; align-items: center;">
+        <div style="background: white; max-width: 500px; width: 90%; max-height: 90vh; overflow-y: auto; border-radius: 12px; padding: 30px; position: relative;">
+            <button onclick="closeBookingModal()" style="position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 24px; cursor: pointer;">×</button>
+            <h3 style="color: #1a3a2f; margin-bottom: 20px;">预订此行程</h3>
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label>出行日期</label>
+                    <input type="date" id="travelDate" required>
+                </div>
+                <div class="form-group">
+                    <label>出行人数</label>
+                    <select id="travelers" required>
+                        <option value="">请选择</option>
+                        <option value="2">2人</option>
+                        <option value="3">3人</option>
+                        <option value="4">4人</option>
+                        <option value="5">5人</option>
+                        <option value="6">6人</option>
+                        <option value="7">7人</option>
+                        <option value="8">8人</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>出行天数</label>
+                    <select id="tripDays">
+                        <option value="5">5天</option>
+                        <option value="7" selected>7天</option>
+                        <option value="10">10天</option>
+                        <option value="14">14天</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-cta" style="width: 100%;">添加到购物车</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p class="footer-logo">✈️ lulutravel</p>
+        <p class="footer-copy">© 2026 lulutravel. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+    <script>
+        // Cart functions
+        const CART_KEY = 'lulutravel_cart';
+
+        function loadCart() {
+            return JSON.parse(localStorage.getItem(CART_KEY) || '[]');
+        }
+
+        function saveCart(cart) {
+            localStorage.setItem(CART_KEY, JSON.stringify(cart));
+        }
+
+        function openBookingModal() {
+            document.getElementById('bookingModal').style.display = 'flex';
+        }
+
+        function closeBookingModal() {
+            document.getElementById('bookingModal').style.display = 'none';
+        }
+
+        // Booking form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const item = {
+                id: Date.now().toString(),
+                name: 'Nature\'s Masterpiece',
+                route: 'Guilin → Yangshuo → Zhangjiajie',
+                icon: '🏔️',
+                price: 2900,
+                date: document.getElementById('travelDate').value,
+                travelers: parseInt(document.getElementById('travelers').value),
+                days: parseInt(document.getElementById('tripDays').value)
+            };
+
+            const cart = loadCart();
+            cart.push(item);
+            saveCart(cart);
+
+            closeBookingModal();
+            alert('已添加到购物车！');
+            document.getElementById('bookingForm').reset();
+        });
+
+        // Close modal on outside click
+        document.getElementById('bookingModal').addEventListener('click', function(e) {
+            if (e.target === this) closeBookingModal();
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ | China Luxury Small Group Tours</title>
+    <meta name="description" content="Frequently asked questions about our luxury small group tours to China. Find answers about itineraries, booking, visas, and more.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #1a5f3c;
+            --primary: #2d8a5e;
+            --primary-light: #4aa87a;
+            --accent: #c9a227;
+            --text-dark: #1a1a1a;
+            --text-medium: #4a4a4a;
+            --text-light: #6b6b6b;
+            --bg-cream: #faf8f5;
+            --bg-white: #ffffff;
+            --border: #e8e4df;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-cream);
+            line-height: 1.7;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            padding: 1.2rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(26, 95, 60, 0.15);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--bg-white);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--bg-white);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
+            padding: 10rem 0 6rem;
+            text-align: center;
+            color: var(--bg-white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: var(--bg-white);
+            padding: 1.2rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .breadcrumb-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .breadcrumb a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary);
+        }
+
+        .breadcrumb span {
+            color: var(--primary-dark);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .breadcrumb .separator {
+            margin: 0 0.8rem;
+            color: var(--border);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 5rem 0 7rem;
+            max-width: 900px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .faq-category {
+            margin-bottom: 3rem;
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+        }
+
+        .accordion {
+            background: var(--bg-white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(26, 95, 60, 0.08);
+            margin-bottom: 1rem;
+        }
+
+        .accordion-header {
+            width: 100%;
+            padding: 1.5rem 2rem;
+            background: var(--bg-white);
+            border: none;
+            text-align: left;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, rgba(26, 95, 60, 0.03) 0%, rgba(45, 138, 94, 0.03) 100%);
+        }
+
+        .accordion-header.active {
+            background: linear-gradient(135deg, rgba(26, 95, 60, 0.05) 0%, rgba(45, 138, 94, 0.05) 100%);
+        }
+
+        .accordion-icon {
+            width: 24px;
+            height: 24px;
+            position: relative;
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+
+        .accordion-icon::before,
+        .accordion-icon::after {
+            content: '';
+            position: absolute;
+            background: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .accordion-icon::before {
+            width: 2px;
+            height: 12px;
+            top: 6px;
+            left: 11px;
+        }
+
+        .accordion-icon::after {
+            width: 12px;
+            height: 2px;
+            top: 11px;
+            left: 6px;
+        }
+
+        .accordion-header.active .accordion-icon::before {
+            transform: rotate(90deg);
+            opacity: 0;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+
+        .accordion-content.active {
+            max-height: 500px;
+        }
+
+        .accordion-body {
+            padding: 0 2rem 2rem;
+            color: var(--text-medium);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .accordion-body p {
+            margin-bottom: 1rem;
+        }
+
+        .accordion-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .accordion-body ul {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .accordion-body li {
+            margin-bottom: 0.5rem;
+        }
+
+        .accordion-body strong {
+            color: var(--primary-dark);
+        }
+
+        .accordion-body a {
+            color: var(--primary);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .accordion-body a:hover {
+            border-bottom-color: var(--primary);
+        }
+
+        /* Contact CTA */
+        .contact-cta {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            color: var(--bg-white);
+        }
+
+        .contact-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .contact-cta p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent);
+            color: var(--text-dark);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(201, 162, 39, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(201, 162, 39, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-brand .logo {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .footer-brand p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-column h4 {
+            color: var(--bg-white);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--primary-light);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            padding: 2rem 2rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-bottom p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.2rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 8rem 0 4rem;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .faq-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .accordion-header {
+                padding: 1.25rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .accordion-body {
+                padding: 0 1.5rem 1.5rem;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">China Journeys</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="tours.html">Tours</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="faq.html" class="active">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Frequently Asked Questions</h1>
+            <p>Everything you need to know about our luxury small group tours to China</p>
+        </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="breadcrumb-container">
+            <a href="index.html">Home</a>
+            <span class="separator">/</span>
+            <span>FAQ</span>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <!-- About Itineraries -->
+        <div class="faq-category">
+            <h2 class="category-title">1. About Itineraries</h2>
+            
+            <div class="accordion">
+                <button class="accordion-header">
+                    What is a "small group" tour?
+                    <span class="accordion-icon"></span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p>Our small group tours are designed for <strong>2-8 travelers</strong>, creating an intimate and personalized experience. Unlike large bus tours with 40+ people, our small groups allow for:</p>
+                        <ul>
+                            <li>Flexible pacing and spontaneous discoveries</li>
+                            <li>Access to exclusive venues and hidden gems</li>
+                            <li>Meaningful connections with fellow travelers</li>
+                            <li>Personalized attention from expert guides</li>
+                            <li>Authentic local dining experiences</li>
+                        </ul>
+                        <p>Whether you're a solo traveler joining a group or traveling with friends/family, you'll enjoy a boutique travel experience tailored to discerning travelers.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    What tour themes do you offer?
+                    <span class="accordion-icon"></span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p>We specialize in three core themes, each crafted for immersive cultural exploration:</p>
+                        <p><strong>Cultural Heritage Tours:</strong> Explore ancient temples, UNESCO World Heritage sites, traditional crafts workshops, and private museum visits with expert historians.</p>
+                        <p><strong>Culinary Journeys:</strong> From street food adventures in Chengdu to private cooking classes with local chefs and tea ceremonies in Hangzhou—designed for food enthusiasts.</p>
+                        <p><strong>Outdoor & Adventure:</strong> Hike the Great Wall's wild sections, cruise the Li River through karst mountains, trek Tiger Leaping Gorge, or cycle through Yangshuo's countryside.</p>
+                        <p>All tours combine multiple elements for a well-rounded China experience.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    Can I customize a private tour?
+                    <span class="accordion-icon"></span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p>Absolutely! While our small group departures offer excellent value and social connection, we also specialize in <strong>private custom tours</strong> for:</p>
+                        <ul>
+                            <li>Families with specific needs or young children</li>
+                            <li>Groups of friends wanting exclusive experiences</li>
+                            <li>Travelers with particular interests (photography, art, architecture)</li>
+                            <li>Those celebrating special occasions</li>
+                        </ul>
+                        <p>Contact us to design your perfect itinerary. Custom tours can follow our existing routes or venture completely off the beaten path.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    How physically demanding are the tours?
+                    <span class="accordion-icon"></span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p>Our tours cater to various fitness levels, clearly marked as:</p>
+                        <ul>
+                            <li><strong>Leisurely:</strong> Minimal walking, suitable for all ages and mobility levels</li>
+                            <li><strong>Moderate:</strong> Daily walking (3-5 miles), some stairs and uneven surfaces</li>
+                            <li><strong>Active:</strong> Hiking, cycling, or extended walking (5+ miles daily)</li>
+                        </ul>
+                        <p>Specific physical requirements are detailed in each tour description. We can also modify activities for travelers with mobility concerns—just let us know your needs when booking.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Booking -->
+        <div class="faq-category">
+            <h2 class="category-title">2. About Booking</h2>
+            
+            <div class="accordion">
+                <button class="accordion-header">
+                    How far in advance should I book?
+                    <span class="accordion-icon"></span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p>We recommend booking <strong>3-6 months in advance</strong> for the best selection of dates and accommodations. Popular seasons (April-May, September-October) fill up quickly.</p>
+                        <p>For custom private tours, 2-3 months is typically sufficient, though more notice is appreciated for complex itineraries.</p>
+                        <p>Last-minute bookings (within 30 days) may be possible depending on availability—contact us to check.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    What is your cancellation policy?
+                    <span class="accordion-icon"></span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p>We understand plans can change. Our cancellation policy is designed to be fair:</p>
+                        <ul>
+                            <li><strong>60+ days before departure:</strong> Full refund minus $200 administrative fee</li>
+                            <li><strong>30-59 days before departure:</strong> 50% refund</li>
+                            <li><strong>15-29 days before departure:</strong> 25% refund</li>
+                            <li><strong>Within 14 days:</strong> No refund (travel insurance recommended)</li>
+                        </ul>
+                        <p>We strongly recommend purchasing comprehensive travel insurance to protect your investment against unexpected circumstances.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    Do you offer single traveler supplements?
+                    <span class="accordion-icon"></span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p>Yes. Our tour prices are based on double occupancy. Solo travelers have two options:</p>
+                        <ul>
+                            <li><strong>Room Share:</strong> We'll pair you with a same-gender roommate at no extra cost (subject to availability)</li>
+                            <li><strong>Private Room:</strong> Single supplement applies (typically $800-1,500 depending on tour length and hotels)</li>
+                        </ul>
+                        <p>Many of our solo travelers appreciate the small group format—it offers companionship while maintaining personal space.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    What payment methods do you accept?
+                    <span class="accordion-icon"></span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p>We accept the following payment methods:</p>
+                        <ul>
+                            <li>Credit cards (Visa, Mastercard, American Express)</li>
+                            <li>Bank transfer/wire</li>
+                            <li>PayPal</li>
+                        </ul>
+                        <p>A deposit of <strong>$500 per person</strong> is required to secure your booking, with the balance due 60 days before departure. Payment plans are available upon request.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Visas -->
+        <div class="faq-category">
+            <h2 class="category-title">3. About Visas</h2>
+            
+            <div class="accordion">
+                <button class="accordion-header">
+                    Do I need a visa to visit China?
+                    <span class="accordion-icon"></span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p>Most travelers require a visa to enter mainland China. We recommend applying for a <strong>L (Tourist) Visa</strong> through your nearest Chinese embassy or consulate.</p>
+                        <p>Currently, citizens of select countries enjoy visa-free entry for stays up to 15 days. Please check the latest regulations or contact us for current visa requirements specific to your nationality.</p>
+                        <p>We provide invitation letters and all necessary documentation to support your visa application.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    How do I apply for a Chinese visa?
+                    <span class="accordion-icon"></span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p>The visa application process typically involves:</p>
+                        <ol style="margin: 1rem 0; padding-left: 1.5rem;">
+                            <li>Complete the online visa application form (COVA)</li>
+                            <li>Prepare required documents: passport, photo, flight itinerary, hotel bookings</li>
+                            <li>Submit application at Chinese Visa Application Service Center</li>
+                            <li>Pay visa fee and wait for processing (typically 4-7 working days)</li>
+                        </ol>
+                        <p>We provide detailed visa guidance after booking, including invitation letters and support documents. For complex cases, we can recommend visa agencies.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    What passport validity do I need?
+                    <span class="accordion-icon"></span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p>Your passport must be valid for at least <strong>6 months beyond your planned departure date from China</strong> and have at least two blank visa pages.</p>
+                        <p>If your passport is nearing expiration, we recommend renewing it before applying for your Chinese visa, as visas cannot be transferred between passports.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Costs -->
+        <div class="faq-category">
+            <h2 class="category-title">4. About Costs</h2>
+            
+            <div class="accordion">
+                <button class="accordion-header">
+                    What is included in the tour price?
+                    <span class="accordion-icon"></span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p>Our tour prices are comprehensive and include:</p>
+                        <ul>
+                            <li>All accommodations (boutique hotels, 4-5 star)</li>
+                            <li>Daily breakfast and selected meals</li>
+                            <li>Professional English-speaking guides</li>
+                            <li>Private transportation throughout</li>
+                            <li>All entrance fees and activities listed</li>
+                            <li>Internal flights (if specified in itinerary)</li>
+                            <li>24/7 emergency support</li>
+                        </ul>
+                        <p>What's not included: international flights, most lunches and dinners (allowing flexibility), personal expenses, travel insurance, and gratuities.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    How much should I budget for extras?
+                    <span class="accordion-icon"></span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p>We recommend budgeting approximately:</p>
+                        <ul>
+                            <li><strong>Meals not included:</strong> $15-40 per day (China offers excellent food at all price points)</li>
+                            <li><strong>Shopping and souvenirs:</strong> $200-500 depending on interests</li>
+                            <li><strong>Optional activities:</strong> $50-150 per activity</li>
+                            <li><strong>Gratuities:</strong> $10-15 per day for guides and drivers (at your discretion)</li>
+                        </ul>
+                        <p>China is quite affordable compared to Western countries. ATMs are widely available, and mobile payment (Alipay/WeChat) is prevalent—we'll help you set these up.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    Are there any hidden fees?
+                    <span class="accordion-icon"></span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>No hidden fees.</strong> We believe in transparent pricing. The tour price you see is what you pay for all included services.</p>
+                        <p>Any optional activities or upgrades are clearly marked as such. We never pressure travelers into purchases or take commission-based shopping stops.</p>
+                        <p>The only additional required cost is travel insurance, which we require all travelers to purchase independently.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Insurance -->
+        <div class="faq-category">
+            <h2 class="category-title">5. About Insurance</h2>
+            
+            <div class="accordion">
+                <button class="accordion-header">
+                    Is travel insurance mandatory?
+                    <span class="accordion-icon"></span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Yes, comprehensive travel insurance is mandatory</strong> for all our tours. This protects both you and the group in case of unexpected circumstances.</p>
+                        <p>Your insurance must cover:</p>
+                        <ul>
+                            <li>Emergency medical expenses (minimum $100,000)</li>
+                            <li>Emergency medical evacuation</li>
+                            <li>Trip cancellation and interruption</li>
+                            <li>Lost or stolen belongings</li>
+                        </ul>
+                        <p>We recommend providers like World Nomads, SafetyWing, or Allianz, but you may use any reputable company.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    What happens in a medical emergency?
+                    <span class="accordion-icon"></span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p>Your safety is our priority. In case of medical emergency:</p>
+                        <ul>
+                            <li>Your guide will immediately arrange transport to the nearest quality hospital</li>
+                            <li>We maintain relationships with international hospitals in all major destinations</li>
+                            <li>Our 24/7 emergency hotline coordinates with your insurance provider</li>
+                            <li>English-speaking staff are available at recommended hospitals</li>
+                            <li>We assist with all communications and logistics</li>
+                        </ul>
+                        <p>China has excellent medical facilities in major cities, often with Western-trained doctors.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Language -->
+        <div class="faq-category">
+            <h2 class="category-title">6. About Language</h2>
+            
+            <div class="accordion">
+                <button class="accordion-header">
+                    Will language be a barrier?
+                    <span class="accordion-icon"></span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Not with us.</strong> Your professional English-speaking guide accompanies you throughout the journey, handling all logistics, translations, and cultural interpretation.</p>
+                        <p>In major tourist areas, you'll find English signage and some English-speaking staff. However, venturing into local neighborhoods and markets with your guide provides authentic experiences without communication stress.</p>
+                        <p>We also provide a helpful phrase guide and translation app recommendations for independent exploration.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    Do I need to learn Chinese before traveling?
+                    <span class="accordion-icon"></span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p>Not at all! While locals appreciate any effort ("ni hao" / hello goes a long way), your guide handles all communication needs.</p>
+                        <p>That said, learning a few basic phrases enhances your experience:</p>
+                        <ul>
+                            <li>Ni hao (nee how) — Hello</li>
+                            <li>Xie xie (syeh syeh) — Thank you</li>
+                            <li>Bu yao (boo yow) — No thanks / Don't want</li>
+                            <li>Duo shao qian? (dwo shaow chyen?) — How much?</li>
+                        </ul>
+                        <p>We'll provide a pronunciation guide before departure.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Special Needs -->
+        <div class="faq-category">
+            <h2 class="category-title">7. About Special Needs</h2>
+            
+            <div class="accordion">
+                <button class="accordion-header">
+                    Can you accommodate dietary restrictions?
+                    <span class="accordion-icon"></span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p><strong>Absolutely.</strong> Chinese cuisine is incredibly diverse, and we can accommodate:</p>
+                        <ul>
+                            <li>Vegetarian and vegan diets</li>
+                            <li>Gluten-free requirements</li>
+                            <li>Food allergies (nuts, shellfish, etc.)</li>
+                            <li>Religious dietary laws (halal, kosher)</li>
+                            <li>Low-sodium or diabetic-friendly meals</li>
+                        </ul>
+                        <p>Please inform us of any dietary needs at booking. Your guide will carry a translated card explaining your requirements to ensure safe dining throughout your journey.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    Do you accommodate travelers with mobility challenges?
+                    <span class="accordion-icon"></span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p>We strive to make China accessible to all travelers. Many of our itineraries can be modified for wheelchair users or those with limited mobility:</p>
+                        <ul>
+                            <li>We select hotels with elevator access and accessible bathrooms</li>
+                            <li>Private vehicles can accommodate foldable wheelchairs</li>
+                            <li>Many major attractions offer accessible entrances and pathways</li>
+                            <li>We can arrange wheelchair rental if needed</li>
+                        </ul>
+                        <p>Please discuss your specific needs with us before booking so we can recommend the most suitable itinerary and make necessary arrangements.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    Are your tours suitable for families with children?
+                    <span class="accordion-icon"></span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p>Yes! We welcome families and can tailor experiences for children:</p>
+                        <ul>
+                            <li><strong>Ages 8+:</strong> Most group tours work well with engaged children</li>
+                            <li><strong>Younger children:</strong> We recommend private custom tours with adjusted pacing</li>
+                        </ul>
+                        <p>Family-friendly additions include:</p>
+                        <ul>
+                            <li>Kung fu lessons and acrobatic shows</li>
+                            <li>Panda volunteer programs</li>
+                            <li>Calligraphy and kite-making workshops</li>
+                            <li>High-speed train experiences kids love</li>
+                        </ul>
+                        <p>Contact us for family-specific recommendations.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <button class="accordion-header">
+                    What if I have other special requests?
+                    <span class="accordion-icon"></span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-body">
+                        <p>We pride ourselves on personalization. Whether it's:</p>
+                        <ul>
+                            <li>Anniversary or birthday celebrations</li>
+                            <li>Professional photography sessions</li>
+                            <li>Specific accessibility needs</li>
+                            <li>Religious or spiritual requirements</li>
+                            <li>Adventure activity preferences</li>
+                        </ul>
+                        <p>—just let us know. We'll do our best to accommodate or suggest alternatives that meet your needs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="contact-cta">
+        <h2>Still Have Questions?</h2>
+        <p>Our travel specialists are here to help you plan your perfect China journey. Reach out anytime.</p>
+        <a href="contact.html" class="btn-primary">Contact Us</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">China Journeys</a>
+                <p>Crafting intimate, authentic journeys through China's most captivating destinations since 2015.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="tours.html">All Tours</a></li>
+                    <li><a href="tours.html#cultural">Cultural Heritage</a></li>
+                    <li><a href="tours.html#culinary">Culinary Journeys</a></li>
+                    <li><a href="tours.html#outdoor">Outdoor Adventures</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="blog.html">Travel Blog</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="cancellation.html">Cancellation Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 China Journeys. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" aria-label="Instagram">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <a href="#" aria-label="Facebook">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </a>
+                <a href="#" aria-label="YouTube">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const isActive = button.classList.contains('active');
+                
+                // Close all accordions (optional - remove this block for multiple open)
+                document.querySelectorAll('.accordion-header').forEach(btn => {
+                    btn.classList.remove('active');
+                    btn.nextElementSibling.classList.remove('active');
+                });
+                
+                // Toggle current accordion
+                if (!isActive) {
+                    button.classList.add('active');
+                    content.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - China Travel Adventures</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .blog-header {
+            background: linear-gradient(135deg, #1a5f3c 0%, #2d8a5e 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .blog-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .blog-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        .blog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        .blog-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+        .blog-card-image {
+            height: 200px;
+            background: linear-gradient(135deg, #1a5f3c 0%, #2d8a5e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        .blog-card-content {
+            padding: 25px;
+        }
+        .blog-card-category {
+            display: inline-block;
+            background: #f0f7f4;
+            color: #1a5f3c;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+        .blog-card-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .blog-card-excerpt {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .blog-card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            color: #999;
+            font-size: 0.85rem;
+        }
+        .blog-card-link {
+            color: #1a5f3c;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .blog-card-link:hover {
+            text-decoration: underline;
+        }
+        .blog-categories {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .blog-category-btn {
+            padding: 10px 20px;
+            border: 2px solid #1a5f3c;
+            background: transparent;
+            color: #1a5f3c;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .blog-category-btn:hover,
+        .blog-category-btn.active {
+            background: #1a5f3c;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="logo">China Travel</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="product.html">Tours</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="booking.html" class="btn btn-primary">Book Now</a>
+        </nav>
+    </header>
+
+    <section class="blog-header">
+        <h1>Travel Stories & Guides</h1>
+        <p>Expert insights, travel tips, and unforgettable stories from China's most fascinating destinations</p>
+    </section>
+
+    <main class="blog-container">
+        <div class="blog-categories">
+            <button class="blog-category-btn active">All</button>
+            <button class="blog-category-btn">Culture</button>
+            <button class="blog-category-btn">Food</button>
+            <button class="blog-category-btn">Nature</button>
+            <button class="blog-category-btn">Tips</button>
+            <button class="blog-category-btn">Guides</button>
+        </div>
+
+        <div class="blog-grid">
+            <article class="blog-card">
+                <div class="blog-card-image">🏯</div>
+                <div class="blog-card-content">
+                    <span class="blog-card-category">Culture</span>
+                    <h3 class="blog-card-title">The Ultimate Guide to China's Ancient Villages</h3>
+                    <p class="blog-card-excerpt">Discover the hidden gems of rural China, where ancient traditions meet breathtaking landscapes...</p>
+                    <div class="blog-card-meta">
+                        <span>Jan 15, 2026</span>
+                        <a href="#" class="blog-card-link">Read More →</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-card-image">🥟</div>
+                <div class="blog-card-content">
+                    <span class="blog-card-category">Food</span>
+                    <h3 class="blog-card-title">A Foodie's Journey Through Sichuan Cuisine</h3>
+                    <p class="blog-card-excerpt">From spicy hotpot to numbing mapo tofu, explore the bold flavors that define Sichuan cooking...</p>
+                    <div class="blog-card-meta">
+                        <span>Jan 10, 2026</span>
+                        <a href="#" class="blog-card-link">Read More →</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-card-image">🏔️</div>
+                <div class="blog-card-content">
+                    <span class="blog-card-category">Nature</span>
+                    <h3 class="blog-card-title">Hiking the Yellow Mountains: A Photographer's Dream</h3>
+                    <p class="blog-card-excerpt">Join us as we explore the misty peaks and ancient pine trees of Huangshan...</p>
+                    <div class="blog-card-meta">
+                        <span>Jan 5, 2026</span>
+                        <a href="#" class="blog-card-link">Read More →</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-card-image">🎎</div>
+                <div class="blog-card-content">
+                    <span class="blog-card-category">Culture</span>
+                    <h3 class="blog-card-title">Understanding Chinese Tea Culture</h3>
+                    <p class="blog-card-excerpt">A deep dive into the centuries-old traditions of tea ceremonies across China...</p>
+                    <div class="blog-card-meta">
+                        <span>Dec 28, 2025</span>
+                        <a href="#" class="blog-card-link">Read More →</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-card-image">📝</div>
+                <div class="blog-card-content">
+                    <span class="blog-card-category">Tips</span>
+                    <h3 class="blog-card-title">Essential Tips for First-Time Visitors to China</h3>
+                    <p class="blog-card-excerpt">Everything you need to know before your first trip to the Middle Kingdom...</p>
+                    <div class="blog-card-meta">
+                        <span>Dec 20, 2025</span>
+                        <a href="#" class="blog-card-link">Read More →</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-card-image">🌸</div>
+                <div class="blog-card-content">
+                    <span class="blog-card-category">Nature</span>
+                    <h3 class="blog-card-title">Chasing Cherry Blossoms Across China</h3>
+                    <p class="blog-card-excerpt">Where and when to see China's most stunning spring blooms...</p>
+                    <div class="blog-card-meta">
+                        <span>Dec 15, 2025</span>
+                        <a href="#" class="blog-card-link">Read More →</a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>China Travel Adventures</h4>
+                <p>Creating unforgettable journeys through China's most fascinating destinations since 2026.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Tours</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 China Travel Adventures. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.blog-category-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.blog-category-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

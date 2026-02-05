@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Culinary Journey - 6 Days | lulutravel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        .product-hero {
+            position: relative;
+            height: 70vh;
+            min-height: 500px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+        
+        .product-hero-bg {
+            position: absolute;
+            inset: 0;
+        }
+        
+        .product-hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(26,26,26,0.9) 0%, rgba(26,26,26,0.3) 50%, transparent 100%);
+        }
+        
+        .product-hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            padding-bottom: 80px;
+            max-width: 800px;
+        }
+        
+        .product-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #C4A77D;
+            margin-bottom: 16px;
+        }
+        
+        .product-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+        
+        .product-subtitle {
+            font-size: 1.25rem;
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 24px;
+        }
+        
+        .product-meta {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            font-size: 0.95rem;
+        }
+        
+        .product-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .product-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 80px;
+        }
+        
+        @media (max-width: 900px) {
+            .product-container {
+                grid-template-columns: 1fr;
+                padding: 60px 24px;
+            }
+        }
+        
+        .product-content {
+            padding-right: 40px;
+        }
+        
+        @media (max-width: 900px) {
+            .product-content {
+                padding-right: 0;
+            }
+        }
+        
+        .product-description {
+            font-size: 1.1rem;
+            color: #444;
+            line-height: 1.9;
+            margin-bottom: 40px;
+        }
+        
+        .itinerary {
+            margin: 50px 0;
+        }
+        
+        .itinerary h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: #2D4A3E;
+            margin-bottom: 24px;
+        }
+        
+        .day-item {
+            display: flex;
+            gap: 24px;
+            padding: 24px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .day-item:last-child {
+            border-bottom: none;
+        }
+        
+        .day-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #2D4A3E;
+            min-width: 60px;
+        }
+        
+        .day-content h4 {
+            font-size: 1.1rem;
+            color: #1A1A1A;
+            margin-bottom: 6px;
+        }
+        
+        .day-content p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .booking-section {
+            position: relative;
+        }
+        
+        .booking-card {
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 100px;
+        }
+        
+        .booking-header {
+            text-align: center;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 24px;
+        }
+        
+        .price-amount {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 500;
+            color: #2D4A3E;
+        }
+        
+        .price-note {
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 4px;
+        }
+        
+        .booking-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .form-group {
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #666;
+            margin-bottom: 8px;
+            letter-spacing: 0.05em;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 16px;
+            border: 1px solid #e5e5e5;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #2D4A3E;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(45, 74, 62, 0.1);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #2D4A3E 0%, #4A7C59 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(45, 74, 62, 0.3);
+        }
+        
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .success-message.show {
+            display: block;
+        }
+        
+        .success-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        
+        .success-message h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.75rem;
+            color: #2D4A3E;
+            margin-bottom: 12px;
+        }
+        
+        .success-message p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 40px;
+            transition: color 0.3s ease;
+        }
+        
+        .back-link:hover {
+            color: #2D4A3E;
+        }
+        
+        .includes-section {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid #eee;
+        }
+        
+        .includes-section h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: #2D4A3E;
+            margin-bottom: 20px;
+        }
+        
+        .includes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+        
+        .include-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+            color: #444;
+        }
+        
+        .include-item span:first-child {
+            font-size: 1.25rem;
+        }
+
+        /* Login Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal-container {
+            background: white;
+            border-radius: 16px;
+            max-width: 520px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            background: #f8f6f3;
+            padding: 28px 40px 18px;
+            text-align: center;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .modal-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 26px;
+            color: #1a3a2f;
+            margin-bottom: 6px;
+        }
+
+        .modal-header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .modal-tabs {
+            display: flex;
+            border-bottom: 1px solid #eee;
+        }
+
+        .modal-tab {
+            flex: 1;
+            padding: 16px;
+            text-align: center;
+            background: none;
+            border: none;
+            font-size: 15px;
+            font-weight: 500;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .modal-tab.active {
+            color: #1a5f3c;
+        }
+
+        .modal-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #1a5f3c;
+        }
+
+        .modal-body {
+            padding: 28px 40px 36px;
+        }
+
+        .modal-form {
+            display: none;
+        }
+
+        .modal-form.active {
+            display: block;
+        }
+
+        .modal-form .form-group {
+            margin-bottom: 16px;
+        }
+
+        .modal-form .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            color: #333;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .modal-form .form-group input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 2px solid #e0e5e3;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .modal-form .form-group input:focus {
+            outline: none;
+            border-color: #1a7a65;
+            box-shadow: 0 0 0 4px rgba(26, 122, 101, 0.1);
+        }
+
+        .modal-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #1a5f3c 0%, #2d8a5e 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(26, 95, 60, 0.3);
+        }
+
+        .modal-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .modal-footer-link {
+            text-align: center;
+            margin-top: 16px;
+            color: #666;
+            font-size: 13px;
+        }
+
+        .modal-footer-link a {
+            color: #1a5f3c;
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .modal-footer-link a:hover {
+            text-decoration: underline;
+        }
+
+        .modal-message {
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            margin-bottom: 16px;
+            display: none;
+        }
+
+        .modal-message.error {
+            background: #fee;
+            color: #c00;
+            display: block;
+        }
+
+        .modal-message.success {
+            background: #efe;
+            color: #060;
+            display: block;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            color: #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: white;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">lulutravel</a>
+            <ul class="nav-links">
+                <li><a href="index.html#trips">Our Trips</a></li>
+                <li><a href="index.html#why-us">Why Us</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="login.html" class="nav-cta" id="authLink">Sign In</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="product-hero">
+        <div class="product-hero-bg">
+            <img src="https://images.unsplash.com/photo-1569949380638-555a28b7475f?w=1920&q=80" alt="Culinary Journey - Chengdu">
+        </div>
+        <div class="product-hero-overlay"></div>
+        <div class="product-hero-content">
+            <span class="product-tag">Food & Culture · 6 Days</span>
+            <h1 class="product-title">Culinary Journey</h1>
+            <p class="product-subtitle">Sichuan · Chengdu</p>
+            <div class="product-meta">
+                <span>🐼 Pandas & Culture</span>
+                <span>👥 2-8 Travelers</span>
+                <span>📅 Year Round</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Content -->
+    <div class="product-container">
+        <div class="product-content">
+            <a href="index.html#trips" class="back-link">← Back to All Trips</a>
+            
+            <p class="product-description">
+                Journey through Sichuan Province, China's cultural and culinary capital, where ancient traditions and natural wonders await. Visit the world-famous Panda Base, explore historic temples, walk through charming old streets, and savor authentic Sichuan cuisine with local families.
+            </p>
+
+            <div class="itinerary">
+                <h3>Your Journey</h3>
+                <div class="day-item">
+                    <span class="day-number">Day 1-2</span>
+                    <div class="day-content">
+                        <h4>Chengdu Discovery</h4>
+                        <p>Giant Panda Base visit, People's Park tea ceremony, Jinli Ancient Street exploration</p>
+                    </div>
+                </div>
+                <div class="day-item">
+                    <span class="day-number">Day 3-4</span>
+                    <div class="day-content">
+                        <h4>Culture & Nature</h4>
+                        <p>Wuhou Shrine and Temple of Marquis, cooking class with local family, Dujiangyan Irrigation System</p>
+                    </div>
+                </div>
+                <div class="day-item">
+                    <span class="day-number">Day 5-6</span>
+                    <div class="day-content">
+                        <h4>Local Immersion</h4>
+                        <p>Qingcheng Mountain hike, home dining experience, traditional Sichuan opera farewell</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="includes-section">
+                <h3>What's Included</h3>
+                <div class="includes-grid">
+                    <div class="include-item"><span>🏨</span> Boutique hotels</div>
+                    <div class="include-item"><span>🐼</span> Panda Base tickets</div>
+                    <div class="include-item"><span>🚗</span> Private transfers</div>
+                    <div class="include-item"><span>🍽️</span> All meals + cooking class</div>
+                    <div class="include-item"><span>🎤</span> Expert local guides</div>
+                    <div class="include-item"><span>📱</span> 24/7 support</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Booking Card -->
+        <div class="booking-section">
+            <div class="booking-card">
+                <div class="booking-header">
+                    <div class="price-amount">$2,500</div>
+                    <div class="price-note">per person, based on 2 travelers</div>
+                </div>
+
+                <form class="booking-form" id="bookingForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Travel Date</label>
+                            <input type="date" id="travelDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Travelers</label>
+                            <select id="travelers" required>
+                                <option value="">Select</option>
+                                <option value="2">2 People</option>
+                                <option value="3">3 People</option>
+                                <option value="4">4 People</option>
+                                <option value="5">5 People</option>
+                                <option value="6">6 People</option>
+                                <option value="7">7 People</option>
+                                <option value="8">8 People</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="fullName" placeholder="Your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="email" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" id="phone" placeholder="+1 234 567 8900" required>
+                    </div>
+                    <button type="submit" class="submit-btn" id="submitBtn">Request to Book</button>
+                </form>
+
+                <div class="success-message" id="successMessage">
+                    <div class="success-icon">✅</div>
+                    <h3>Thank You!</h3>
+                    <p>Your inquiry has been received.<br>We'll contact you within 24 hours.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal-overlay" id="loginModal">
+        <div style="position: relative;">
+            <button class="modal-close" id="closeModal">×</button>
+            <div class="modal-container">
+                <div class="modal-header">
+                    <h2>✈️ lulutravel</h2>
+                    <p>Sign in to complete your booking</p>
+                </div>
+                <div class="modal-tabs">
+                    <button class="modal-tab active" data-tab="login">Sign In</button>
+                    <button class="modal-tab" data-tab="register">Create Account</button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-message" id="modalMessage"></div>
+                    
+                    <!-- Login Form -->
+                    <form class="modal-form active" id="modalLoginForm">
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" id="modalLoginEmail" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" id="modalLoginPassword" placeholder="Enter your password" required>
+                        </div>
+                        <button type="submit" class="modal-btn">Sign In →</button>
+                        <div class="modal-footer-link">
+                            <a id="modalForgotPassword" href="javascript:void(0)">Forgot your password?</a>
+                        </div>
+                    </form>
+                    
+                    <!-- Register Form -->
+                    <form class="modal-form" id="modalRegisterForm">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" id="modalRegisterName" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" id="modalRegisterEmail" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" id="modalRegisterPassword" placeholder="Create a password (min 6 characters)" required minlength="6">
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm Password</label>
+                            <input type="password" id="modalRegisterConfirm" placeholder="Confirm your password" required>
+                        </div>
+                        <button type="submit" class="modal-btn">Create Account →</button>
+                    </form>
+                    
+                    <!-- Forgot Password Form -->
+                    <form class="modal-form" id="modalForgotForm">
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" id="modalForgotEmail" placeholder="your@email.com" required>
+                        </div>
+                        <button type="submit" class="modal-btn">Send Reset Link →</button>
+                        <div class="modal-footer-link">
+                            <a id="modalBackToLogin" href="javascript:void(0)">← Back to Sign In</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 lulutravel. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 本地存储模拟（用于演示）
+        const localAuth = {
+            currentUser: JSON.parse(localStorage.getItem('lulutravel_currentUser') || 'null'),
+            saveCurrentUser: function() { localStorage.setItem('lulutravel_currentUser', JSON.stringify(this.currentUser)); },
+            getSession: function() { return { data: { session: this.currentUser ? { user: this.currentUser } : null } }; },
+            signIn: function(email, password) {
+                const users = JSON.parse(localStorage.getItem('lulutravel_users') || '[]');
+                const user = users.find(u => u.email === email && u.password === password);
+                if (!user) return { error: { message: 'Invalid email or password' } };
+                this.currentUser = { email: user.email, name: user.name, id: user.id };
+                this.saveCurrentUser();
+                return { data: { user: this.currentUser, session: { user: this.currentUser } }, error: null };
+            },
+            signUp: function(email, password, name) {
+                const users = JSON.parse(localStorage.getItem('lulutravel_users') || '[]');
+                if (users.find(u => u.email === email)) return { error: { message: 'Email already registered' } };
+                const user = { email, password, name, id: Date.now() };
+                users.push(user);
+                localStorage.setItem('lulutravel_users', JSON.stringify(users));
+                this.currentUser = { email, name, id: user.id };
+                this.saveCurrentUser();
+                return { data: { user: this.currentUser, session: { user: this.currentUser } }, error: null };
+            },
+            resetPassword: function(email) {
+                const users = JSON.parse(localStorage.getItem('lulutravel_users') || '[]');
+                if (!users.find(u => u.email === email)) return { error: { message: 'Email not found' } };
+                return { error: null };
+            }
+        };
+
+        const authAPI = {
+            getSession: async () => localAuth.getSession(),
+            signIn: async (params) => localAuth.signIn(params.email, params.password),
+            signUp: async (params) => localAuth.signUp(params.email, params.password, params.options && params.options.data ? params.options.data.name : ''),
+            resetPassword: async (email) => localAuth.resetPassword(email)
+        };
+
+        let pendingBookingData = null;
+
+        async function checkAuth() {
+            const { data: { session } } = await authAPI.getSession();
+            const authLink = document.getElementById('authLink');
+
+            if (session) {
+                authLink.textContent = 'My Account';
+                authLink.href = 'profile.html';
+                if (session.user.user_metadata && session.user.user_metadata.name) document.getElementById('fullName').value = session.user.user_metadata.name;
+                document.getElementById('email').value = session.user.email || '';
+            } else {
+                authLink.textContent = 'Sign In';
+                authLink.href = 'login.html';
+            }
+        }
+
+        // Modal functions
+        function showModal() {
+            document.getElementById('loginModal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function hideModal() {
+            document.getElementById('loginModal').classList.remove('show');
+            document.body.style.overflow = '';
+            hideModalMessages();
+        }
+
+        function showModalError(msg) {
+            const el = document.getElementById('modalMessage');
+            el.textContent = msg;
+            el.className = 'modal-message error';
+        }
+
+        function showModalSuccess(msg) {
+            const el = document.getElementById('modalMessage');
+            el.textContent = msg;
+            el.className = 'modal-message success';
+        }
+
+        function hideModalMessages() {
+            document.getElementById('modalMessage').className = 'modal-message';
+        }
+
+        // Modal tab switching
+        document.querySelectorAll('.modal-tab').forEach(function(tab) {
+            tab.addEventListener('click', function() {
+                const tabName = this.dataset.tab;
+                document.querySelectorAll('.modal-tab').forEach(function(t) { t.classList.remove('active'); });
+                this.classList.add('active');
+                document.getElementById('modalLoginForm').classList.remove('active');
+                document.getElementById('modalRegisterForm').classList.remove('active');
+                document.getElementById('modalForgotForm').classList.remove('active');
+                document.getElementById('modal' + tabName.charAt(0).toUpperCase() + tabName.slice(1) + 'Form').classList.add('active');
+                hideModalMessages();
+            });
+        });
+
+        // Show forgot password form
+        document.getElementById('modalForgotPassword').addEventListener('click', function() {
+            hideModalMessages();
+            document.querySelectorAll('.modal-tab').forEach(function(t) { t.classList.remove('active'); });
+            document.getElementById('modalLoginForm').classList.remove('active');
+            document.getElementById('modalRegisterForm').classList.remove('active');
+            document.getElementById('modalForgotForm').classList.add('active');
+            // Pre-fill email if available
+            const loginEmail = document.getElementById('modalLoginEmail').value;
+            if (loginEmail) {
+                document.getElementById('modalForgotEmail').value = loginEmail;
+            }
+        });
+
+        // Back to login from forgot password
+        document.getElementById('modalBackToLogin').addEventListener('click', function() {
+            hideModalMessages();
+            document.querySelector('.modal-tab[data-tab="login"]').classList.add('active');
+            document.querySelector('.modal-tab[data-tab="register"]').classList.remove('active');
+            document.getElementById('modalForgotForm').classList.remove('active');
+            document.getElementById('modalLoginForm').classList.add('active');
+        });
+
+        // Close modal
+        document.getElementById('closeModal').addEventListener('click', hideModal);
+        document.getElementById('loginModal').addEventListener('click', function(e) {
+            if (e.target === this) hideModal();
+        });
+
+        // Submit booking form
+        document.getElementById('bookingForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const { data: { session } } = await authAPI.getSession();
+            
+            pendingBookingData = {
+                tour_name: 'Culinary Journey',
+                tour_route: 'Sichuan · Chengdu',
+                tour_icon: '🍜',
+                price: 2500,
+                travel_date: document.getElementById('travelDate').value,
+                travelers: parseInt(document.getElementById('travelers').value),
+                name: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                status: 'pending'
+            };
+
+            if (!session) {
+                showModal();
+                return;
+            }
+
+            await submitBooking();
+        });
+
+        async function submitBooking() {
+            const btn = document.getElementById('submitBtn');
+            btn.textContent = 'Submitting...';
+            btn.disabled = true;
+
+            try {
+                const { error } = await supabase.from('orders').insert([pendingBookingData]);
+                if (error) {
+                    alert('Error submitting. Please try again.');
+                    btn.textContent = 'Request to Book';
+                    btn.disabled = false;
+                } else {
+                    document.getElementById('bookingForm').style.display = 'none';
+                    document.querySelector('.booking-header').style.display = 'none';
+                    document.getElementById('successMessage').classList.add('show');
+                    pendingBookingData = null;
+                }
+            } catch (err) {
+                alert('An error occurred. Please try again.');
+                btn.textContent = 'Request to Book';
+                btn.disabled = false;
+            }
+        }
+
+        // Modal Login
+        document.getElementById('modalLoginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            hideModalMessages();
+            const btn = this.querySelector('.modal-btn');
+            btn.textContent = 'Signing in...';
+            btn.disabled = true;
+
+            try {
+                const { error, data } = await authAPI.signIn({
+                    email: document.getElementById('modalLoginEmail').value,
+                    password: document.getElementById('modalLoginPassword').value
+                });
+                if (error) {
+                    showModalError(error.message);
+                } else {
+                    hideModal();
+                    await checkAuth();
+                    if (pendingBookingData) {
+                        await submitBooking();
+                    }
+                }
+            } catch (err) {
+                showModalError('An error occurred. Please try again.');
+            } finally {
+                btn.textContent = 'Sign In →';
+                btn.disabled = false;
+            }
+        });
+
+        // Modal Register
+        document.getElementById('modalRegisterForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            hideModalMessages();
+            const password = document.getElementById('modalRegisterPassword').value;
+            const confirm = document.getElementById('modalRegisterConfirm').value;
+            if (password !== confirm) {
+                showModalError('Passwords do not match.');
+                return;
+            }
+            const btn = this.querySelector('.modal-btn');
+            btn.textContent = 'Creating account...';
+            btn.disabled = true;
+
+            try {
+                const { error, data } = await authAPI.signUp({
+                    email: document.getElementById('modalRegisterEmail').value,
+                    password: password,
+                    options: { data: { name: document.getElementById('modalRegisterName').value } }
+                });
+                if (error) {
+                    showModalError(error.message);
+                } else {
+                    if (data.session) {
+                        hideModal();
+                        await checkAuth();
+                        if (pendingBookingData) {
+                            await submitBooking();
+                        }
+                    } else {
+                        showModalSuccess('Account created! Please check your email to verify.');
+                        this.reset();
+                    }
+                }
+            } catch (err) {
+                showModalError('An error occurred. Please try again.');
+            } finally {
+                btn.textContent = 'Create Account →';
+                btn.disabled = false;
+            }
+        });
+
+        // Modal Forgot Password Submit
+        document.getElementById('modalForgotForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            hideModalMessages();
+            const btn = this.querySelector('.modal-btn');
+            btn.textContent = 'Sending...';
+            btn.disabled = true;
+
+            try {
+                const { error } = await authAPI.resetPassword(document.getElementById('modalForgotEmail').value);
+                if (error) {
+                    showModalError(error.message);
+                } else {
+                    showModalSuccess('Password reset link sent! Please check your email.');
+                    this.reset();
+                }
+            } catch (err) {
+                showModalError('An error occurred. Please try again.');
+            } finally {
+                btn.textContent = 'Send Reset Link →';
+                btn.disabled = false;
+            }
+        });
+
+        window.addEventListener('scroll', () => { document.querySelector('.nav').classList.toggle('scrolled', window.scrollY > 100); });
+        checkAuth();
+        // Auth state change not needed for local auth
+    </script>
+</body>
+</html>
