@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Supabase Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <h1>Supabase Connection Test</h1>
+    <div id="result"></div>
+    <button onclick="testSignUp()">Test Sign Up</button>
+    <button onclick="testSignIn()">Test Sign In</button>
+
+    <script>
+        const SUPABASE_URL = 'https://zhlldovnjbfyznyrvwma.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpobGxkb3ZuamJmeXpueXJ2d21hIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAyNDg5MDcsImV4cCI6MjA4NTgyNDkwN30.lzljjCLKrph6ZXN_VZycVfYHHN90yMljwwreoFULsMQ';
+
+        console.log('window.supabase:', window.supabase);
+        console.log('typeof window.supabase:', typeof window.supabase);
+
+        let supabase;
+        try {
+            supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+            document.getElementById('result').innerHTML = '<p style="color:green">Supabase client created successfully!</p>';
+            console.log('Supabase client:', supabase);
+        } catch (e) {
+            document.getElementById('result').innerHTML = '<p style="color:red">Error: ' + e.message + '</p>';
+            console.error('Error creating client:', e);
+        }
+
+        async function testSignUp() {
+            const email = 'test' + Date.now() + '@example.com';
+            const password = 'testpassword123';
+            
+            document.getElementById('result').innerHTML = '<p>Signing up with: ' + email + '</p>';
+            
+            try {
+                const { data, error } = await supabase.auth.signUp({
+                    email: email,
+                    password: password
+                });
+                
+                console.log('SignUp result:', { data, error });
+                
+                if (error) {
+                    document.getElementById('result').innerHTML = '<p style="color:red">SignUp Error: ' + error.message + '</p>';
+                } else {
+                    document.getElementById('result').innerHTML = '<p style="color:green">SignUp Success! User: ' + JSON.stringify(data.user?.email) + '</p>';
+                }
+            } catch (e) {
+                document.getElementById('result').innerHTML = '<p style="color:red">Exception: ' + e.message + '</p>';
+                console.error('SignUp exception:', e);
+            }
+        }
+
+        async function testSignIn() {
+            const email = 'test@example.com';
+            const password = 'testpassword123';
+            
+            document.getElementById('result').innerHTML = '<p>Signing in with: ' + email + '</p>';
+            
+            try {
+                const { data, error } = await supabase.auth.signInWithPassword({
+                    email: email,
+                    password: password
+                });
+                
+                console.log('SignIn result:', { data, error });
+                
+                if (error) {
+                    document.getElementById('result').innerHTML = '<p style="color:red">SignIn Error: ' + error.message + '</p>';
+                } else {
+                    document.getElementById('result').innerHTML = '<p style="color:green">SignIn Success! User: ' + JSON.stringify(data.user?.email) + '</p>';
+                }
+            } catch (e) {
+                document.getElementById('result').innerHTML = '<p style="color:red">Exception: ' + e.message + '</p>';
+                console.error('SignIn exception:', e);
+            }
+        }
+    </script>
+</body>
+</html>

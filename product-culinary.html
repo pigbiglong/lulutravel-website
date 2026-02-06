@@ -8,6 +8,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Dropdown CSS -->
+    <link rel="stylesheet" href="css/dropdown.css">
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth.js"></script>
     <style>
         .product-hero {
             position: relative;
@@ -178,10 +184,12 @@
         }
         
         .price-amount {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             font-size: 3rem;
-            font-weight: 500;
+            font-weight: 600;
             color: #2D4A3E;
+            letter-spacing: -0.02em;
+            font-variant-numeric: tabular-nums;
         }
         
         .price-note {
@@ -551,22 +559,30 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="nav">
+    <nav class="nav" id="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">lulutravel</a>
-            <ul class="nav-links">
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.html#trips">Our Trips</a></li>
-                <li><a href="index.html#why-us">Why Us</a></li>
+                <li><a href="about.html">About</a></li>
                 <li><a href="faq.html">FAQ</a></li>
-                <li><a href="login.html" class="nav-cta" id="authLink">Sign In</a></li>
+                <li id="auth-item-container"><a href="login.html" class="nav-cta" id="authLink">Sign In</a></li>
             </ul>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="nav-overlay" id="navOverlay"></div>
 
     <!-- Hero Section -->
     <section class="product-hero">
         <div class="product-hero-bg">
-            <img src="https://images.unsplash.com/photo-1569949380638-555a28b7475f?w=1920&q=80" alt="Culinary Journey - Chengdu">
+            <img src="https://images.unsplash.com/photo-1580828343064-fde4fc206bc6?w=1920&q=80" alt="Culinary Journey - Chengdu">
         </div>
         <div class="product-hero-overlay"></div>
         <div class="product-hero-content">
@@ -634,6 +650,10 @@
                 <div class="booking-header">
                     <div class="price-amount">$2,500</div>
                     <div class="price-note">per person, based on 2 travelers</div>
+                </div>
+
+                <div class="login-notice" id="loginNotice" style="display:none;">
+                    Please <a href="login.html">sign in</a> to book this trip
                 </div>
 
                 <form class="booking-form" id="bookingForm">
@@ -752,66 +772,75 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">lulutravel</a>
+                    <p>Premium small-group tours of China. Curated experiences, expert guides, and memories that last a lifetime.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618 6.98-6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="WeChat">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 0 1 .598.082l1.584.926a.272.272 0 0 0 .14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 0 1-.023-.156.49.49 0 0 1 .201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89l-.006-.033zm-3.61 2.852c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.969-.982z"/>
+                            </svg>
+                        </a>
+                        <a href="mailto:concierge@lulutravel.com" aria-label="Email">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <p style="margin-top: 16px; font-size: 0.875rem; color: var(--color-text-light);">
+                        <a href="mailto:concierge@lulutravel.com" style="color: var(--color-green-dark);">concierge@lulutravel.com</a>
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Tours</h4>
+                        <ul>
+                            <li><a href="product-classic.html">Classic China</a></li>
+                            <li><a href="product-culinary.html">Culinary Journey</a></li>
+                            <li><a href="product-nature.html">Nature & Wellness</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="faq.html">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
             <div class="footer-bottom">
                 <p>&copy; 2026 lulutravel. All rights reserved.</p>
             </div>
         </div>
     </footer>
-
     <script>
-        // 本地存储模拟（用于演示）
-        const localAuth = {
-            currentUser: JSON.parse(localStorage.getItem('lulutravel_currentUser') || 'null'),
-            saveCurrentUser: function() { localStorage.setItem('lulutravel_currentUser', JSON.stringify(this.currentUser)); },
-            getSession: function() { return { data: { session: this.currentUser ? { user: this.currentUser } : null } }; },
-            signIn: function(email, password) {
-                const users = JSON.parse(localStorage.getItem('lulutravel_users') || '[]');
-                const user = users.find(u => u.email === email && u.password === password);
-                if (!user) return { error: { message: 'Invalid email or password' } };
-                this.currentUser = { email: user.email, name: user.name, id: user.id };
-                this.saveCurrentUser();
-                return { data: { user: this.currentUser, session: { user: this.currentUser } }, error: null };
-            },
-            signUp: function(email, password, name) {
-                const users = JSON.parse(localStorage.getItem('lulutravel_users') || '[]');
-                if (users.find(u => u.email === email)) return { error: { message: 'Email already registered' } };
-                const user = { email, password, name, id: Date.now() };
-                users.push(user);
-                localStorage.setItem('lulutravel_users', JSON.stringify(users));
-                this.currentUser = { email, name, id: user.id };
-                this.saveCurrentUser();
-                return { data: { user: this.currentUser, session: { user: this.currentUser } }, error: null };
-            },
-            resetPassword: function(email) {
-                const users = JSON.parse(localStorage.getItem('lulutravel_users') || '[]');
-                if (!users.find(u => u.email === email)) return { error: { message: 'Email not found' } };
-                return { error: null };
-            }
-        };
-
-        const authAPI = {
-            getSession: async () => localAuth.getSession(),
-            signIn: async (params) => localAuth.signIn(params.email, params.password),
-            signUp: async (params) => localAuth.signUp(params.email, params.password, params.options && params.options.data ? params.options.data.name : ''),
-            resetPassword: async (email) => localAuth.resetPassword(email)
-        };
-
-        let pendingBookingData = null;
-
-        async function checkAuth() {
-            const { data: { session } } = await authAPI.getSession();
-            const authLink = document.getElementById('authLink');
-
-            if (session) {
-                authLink.textContent = 'My Account';
-                authLink.href = 'profile.html';
-                if (session.user.user_metadata && session.user.user_metadata.name) document.getElementById('fullName').value = session.user.user_metadata.name;
-                document.getElementById('email').value = session.user.email || '';
-            } else {
-                authLink.textContent = 'Sign In';
-                authLink.href = 'login.html';
+                const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+                const redirect = currentPath + window.location.search;
+                const loginUrl = `login.html?redirect=${encodeURIComponent(redirect)}`;
+                authLink.href = loginUrl;
+                
+                form.style.display = 'none';
+                notice.style.display = 'block';
+                // Update notice link
+                const noticeLink = notice.querySelector('a');
+                if (noticeLink) noticeLink.href = loginUrl;
             }
         }
+
+        // Listen for auth state changes
+        supabase.auth.onAuthStateChange((event, session) => {
+            checkAuth();
+        });
 
         // Modal functions
         function showModal() {
@@ -887,9 +916,9 @@
         // Submit booking form
         document.getElementById('bookingForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            
-            const { data: { session } } = await authAPI.getSession();
-            
+
+            const { data: { session } } = await supabase.auth.getSession();
+
             pendingBookingData = {
                 tour_name: 'Culinary Journey',
                 tour_route: 'Sichuan · Chengdu',
@@ -897,9 +926,9 @@
                 price: 2500,
                 travel_date: document.getElementById('travelDate').value,
                 travelers: parseInt(document.getElementById('travelers').value),
-                name: document.getElementById('fullName').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
+                contact_name: document.getElementById('fullName').value,
+                contact_email: document.getElementById('email').value,
+                contact_phone: document.getElementById('phone').value,
                 status: 'pending'
             };
 
@@ -916,10 +945,23 @@
             btn.textContent = 'Submitting...';
             btn.disabled = true;
 
+            // Get current user
+            const { data: { user } } = await supabase.auth.getUser();
+            
+            if (!user) {
+                showModal();
+                return;
+            }
+            
+            if (pendingBookingData) {
+                pendingBookingData.user_id = user.id;
+            }
+
             try {
                 const { error } = await supabase.from('orders').insert([pendingBookingData]);
                 if (error) {
-                    alert('Error submitting. Please try again.');
+                    console.error('Supabase Insert Error:', error);
+                    alert('Error submitting. Please try again: ' + error.message);
                     btn.textContent = 'Request to Book';
                     btn.disabled = false;
                 } else {
@@ -929,6 +971,7 @@
                     pendingBookingData = null;
                 }
             } catch (err) {
+                console.error('Unexpected Error:', err);
                 alert('An error occurred. Please try again.');
                 btn.textContent = 'Request to Book';
                 btn.disabled = false;
@@ -944,10 +987,11 @@
             btn.disabled = true;
 
             try {
-                const { error, data } = await authAPI.signIn({
+                const { error, data } = await supabase.auth.signInWithPassword({
                     email: document.getElementById('modalLoginEmail').value,
                     password: document.getElementById('modalLoginPassword').value
                 });
+                
                 if (error) {
                     showModalError(error.message);
                 } else {
@@ -980,11 +1024,12 @@
             btn.disabled = true;
 
             try {
-                const { error, data } = await authAPI.signUp({
+                const { error, data } = await supabase.auth.signUp({
                     email: document.getElementById('modalRegisterEmail').value,
                     password: password,
                     options: { data: { name: document.getElementById('modalRegisterName').value } }
                 });
+                
                 if (error) {
                     showModalError(error.message);
                 } else {
@@ -1016,7 +1061,11 @@
             btn.disabled = true;
 
             try {
-                const { error } = await authAPI.resetPassword(document.getElementById('modalForgotEmail').value);
+                const { error } = await supabase.auth.resetPasswordForEmail(
+                    document.getElementById('modalForgotEmail').value,
+                    { redirectTo: window.location.origin + '/login.html' }
+                );
+                
                 if (error) {
                     showModalError(error.message);
                 } else {
@@ -1033,7 +1082,7 @@
 
         window.addEventListener('scroll', () => { document.querySelector('.nav').classList.toggle('scrolled', window.scrollY > 100); });
         checkAuth();
-        // Auth state change not needed for local auth
     </script>
+    <script src="js/main.js"></script>
 </body>
 </html>

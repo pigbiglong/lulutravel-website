@@ -3,262 +3,247 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - China Travel Adventures</title>
+    <title>Travel Journal - lulutravel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500&family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <style>
-        .blog-header {
-            background: linear-gradient(135deg, #1a5f3c 0%, #2d8a5e 100%);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-        }
-        .blog-header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        .blog-header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        .blog-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-        }
-        .blog-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        .blog-card:hover {
-            transform: translateY(-5px);
-        }
-        .blog-card-image {
-            height: 200px;
-            background: linear-gradient(135deg, #1a5f3c 0%, #2d8a5e 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
-        }
-        .blog-card-content {
-            padding: 25px;
-        }
-        .blog-card-category {
-            display: inline-block;
-            background: #f0f7f4;
-            color: #1a5f3c;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-bottom: 10px;
-        }
-        .blog-card-title {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: #333;
-        }
-        .blog-card-excerpt {
-            color: #666;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-        .blog-card-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 15px;
-            border-top: 1px solid #eee;
-            color: #999;
-            font-size: 0.85rem;
-        }
-        .blog-card-link {
-            color: #1a5f3c;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        .blog-card-link:hover {
-            text-decoration: underline;
-        }
-        .blog-categories {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
-        }
-        .blog-category-btn {
-            padding: 10px 20px;
-            border: 2px solid #1a5f3c;
-            background: transparent;
-            color: #1a5f3c;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .blog-category-btn:hover,
-        .blog-category-btn.active {
-            background: #1a5f3c;
-            color: white;
-        }
-    </style>
+    <link rel="stylesheet" href="css/dropdown.css">
 </head>
 <body>
-    <header class="header">
-        <nav class="nav">
-            <a href="index.html" class="logo">China Travel</a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="product.html">Tours</a></li>
+    <!-- Navigation -->
+    <nav class="nav" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">lulutravel</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#trips">Our Trips</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="blog.html" class="active">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li id="auth-item-container"><a href="login.html" class="nav-cta" id="authLink">Sign In</a></li>
             </ul>
-            <a href="booking.html" class="btn btn-primary">Book Now</a>
-        </nav>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="nav-overlay" id="navOverlay"></div>
+
+    <!-- Blog Hero -->
+    <header class="blog-hero">
+        <div class="container">
+            <p class="section-label">Travel Journal</p>
+            <h1 class="section-title">Stories from the Middle Kingdom</h1>
+            <p class="section-desc">Expert insights, hidden gems, and travel guides curated by our local specialists to inspire your next journey.</p>
+        </div>
     </header>
 
-    <section class="blog-header">
-        <h1>Travel Stories & Guides</h1>
-        <p>Expert insights, travel tips, and unforgettable stories from China's most fascinating destinations</p>
-    </section>
-
-    <main class="blog-container">
-        <div class="blog-categories">
-            <button class="blog-category-btn active">All</button>
-            <button class="blog-category-btn">Culture</button>
-            <button class="blog-category-btn">Food</button>
-            <button class="blog-category-btn">Nature</button>
-            <button class="blog-category-btn">Tips</button>
-            <button class="blog-category-btn">Guides</button>
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Filter -->
+        <div class="blog-filter" id="blogFilter">
+            <button class="filter-btn active" data-category="all">All Stories</button>
+            <button class="filter-btn" data-category="culture">Culture</button>
+            <button class="filter-btn" data-category="food">Food & Drink</button>
+            <button class="filter-btn" data-category="nature">Nature</button>
+            <button class="filter-btn" data-category="tips">Travel Tips</button>
         </div>
 
-        <div class="blog-grid">
-            <article class="blog-card">
-                <div class="blog-card-image">🏯</div>
-                <div class="blog-card-content">
-                    <span class="blog-card-category">Culture</span>
-                    <h3 class="blog-card-title">The Ultimate Guide to China's Ancient Villages</h3>
-                    <p class="blog-card-excerpt">Discover the hidden gems of rural China, where ancient traditions meet breathtaking landscapes...</p>
-                    <div class="blog-card-meta">
-                        <span>Jan 15, 2026</span>
-                        <a href="#" class="blog-card-link">Read More →</a>
-                    </div>
-                </div>
-            </article>
-
-            <article class="blog-card">
-                <div class="blog-card-image">🥟</div>
-                <div class="blog-card-content">
-                    <span class="blog-card-category">Food</span>
-                    <h3 class="blog-card-title">A Foodie's Journey Through Sichuan Cuisine</h3>
-                    <p class="blog-card-excerpt">From spicy hotpot to numbing mapo tofu, explore the bold flavors that define Sichuan cooking...</p>
-                    <div class="blog-card-meta">
-                        <span>Jan 10, 2026</span>
-                        <a href="#" class="blog-card-link">Read More →</a>
-                    </div>
-                </div>
-            </article>
-
-            <article class="blog-card">
-                <div class="blog-card-image">🏔️</div>
-                <div class="blog-card-content">
-                    <span class="blog-card-category">Nature</span>
-                    <h3 class="blog-card-title">Hiking the Yellow Mountains: A Photographer's Dream</h3>
-                    <p class="blog-card-excerpt">Join us as we explore the misty peaks and ancient pine trees of Huangshan...</p>
-                    <div class="blog-card-meta">
-                        <span>Jan 5, 2026</span>
-                        <a href="#" class="blog-card-link">Read More →</a>
-                    </div>
-                </div>
-            </article>
-
-            <article class="blog-card">
-                <div class="blog-card-image">🎎</div>
-                <div class="blog-card-content">
-                    <span class="blog-card-category">Culture</span>
-                    <h3 class="blog-card-title">Understanding Chinese Tea Culture</h3>
-                    <p class="blog-card-excerpt">A deep dive into the centuries-old traditions of tea ceremonies across China...</p>
-                    <div class="blog-card-meta">
-                        <span>Dec 28, 2025</span>
-                        <a href="#" class="blog-card-link">Read More →</a>
-                    </div>
-                </div>
-            </article>
-
-            <article class="blog-card">
-                <div class="blog-card-image">📝</div>
-                <div class="blog-card-content">
-                    <span class="blog-card-category">Tips</span>
-                    <h3 class="blog-card-title">Essential Tips for First-Time Visitors to China</h3>
-                    <p class="blog-card-excerpt">Everything you need to know before your first trip to the Middle Kingdom...</p>
-                    <div class="blog-card-meta">
-                        <span>Dec 20, 2025</span>
-                        <a href="#" class="blog-card-link">Read More →</a>
-                    </div>
-                </div>
-            </article>
-
-            <article class="blog-card">
-                <div class="blog-card-image">🌸</div>
-                <div class="blog-card-content">
-                    <span class="blog-card-category">Nature</span>
-                    <h3 class="blog-card-title">Chasing Cherry Blossoms Across China</h3>
-                    <p class="blog-card-excerpt">Where and when to see China's most stunning spring blooms...</p>
-                    <div class="blog-card-meta">
-                        <span>Dec 15, 2025</span>
-                        <a href="#" class="blog-card-link">Read More →</a>
-                    </div>
-                </div>
-            </article>
+        <!-- Grid -->
+        <div class="blog-grid" id="blogGrid">
+            <!-- Content will be populated by JavaScript -->
         </div>
     </main>
 
+    <!-- Footer -->
     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>China Travel Adventures</h4>
-                <p>Creating unforgettable journeys through China's most fascinating destinations since 2026.</p>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">lulutravel</a>
+                    <p>Premium small-group tours of China. Curated experiences, expert guides, and memories that last a lifetime.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618 6.98-6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="WeChat">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 0 1 .598.082l1.584.926a.272.272 0 0 0 .14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 0 1-.023-.156.49.49 0 0 1 .201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89l-.006-.033zm-3.61 2.852c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.969-.982z"/>
+                            </svg>
+                        </a>
+                        <a href="mailto:concierge@lulutravel.com" aria-label="Email">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <p style="margin-top: 16px; font-size: 0.875rem; color: var(--color-text-light);">
+                        <a href="mailto:concierge@lulutravel.com" style="color: var(--color-green-dark);">concierge@lulutravel.com</a>
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Tours</h4>
+                        <ul>
+                            <li><a href="product-classic.html">Classic China</a></li>
+                            <li><a href="product-culinary.html">Culinary Journey</a></li>
+                            <li><a href="product-nature.html">Nature & Wellness</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="faq.html">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="product.html">Tours</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
+            <div class="footer-bottom">
+                <p>&copy; 2026 lulutravel. All rights reserved.</p>
             </div>
-            <div class="footer-section">
-                <h4>Resources</h4>
-                <ul>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="privacy.html">Privacy Policy</a></li>
-                    <li><a href="terms.html">Terms of Service</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 China Travel Adventures. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        document.querySelectorAll('.blog-category-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.blog-category-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
+        // Blog Data (Simulated Content)
+        const blogPosts = [
+            {
+                id: 1,
+                title: "The Ancient Villages of Anhui: A Photographer's Guide",
+                category: "culture",
+                date: "Oct 15, 2025",
+                excerpt: "Step back in time in Wuyuan and Hongcun, where white-walled Hui-style architecture reflects in tranquil lotus ponds.",
+                image: "https://images.unsplash.com/photo-1757102455225-677174ad2fc2?q=80&w=800&auto=format&fit=crop"
+            },
+            {
+                id: 2,
+                title: "Beyond Spicy: A Culinary Tour of Chengdu",
+                category: "food",
+                date: "Nov 02, 2025",
+                excerpt: "Chengdu is famous for spice, but its tea houses and sweet snacks are the real secret. Discover the UNESCO City of Gastronomy.",
+                image: "https://images.unsplash.com/photo-1765188987811-c9f68e6a9f52?q=80&w=800&auto=format&fit=crop"
+            },
+            {
+                id: 3,
+                title: "Zhangjiajie: Hiking the Avatar Mountains",
+                category: "nature",
+                date: "Nov 10, 2025",
+                excerpt: "Floating sandstone pillars and glass skywalks. Here is everything you need to know about visiting the National Forest Park.",
+                image: "https://images.unsplash.com/photo-1546707640-7ba6e4b2df2e?q=80&w=800&auto=format&fit=crop"
+            },
+            {
+                id: 4,
+                title: "The Art of Chinese Tea Ceremonies",
+                category: "culture",
+                date: "Nov 28, 2025",
+                excerpt: "From picking Longjing leaves in Hangzhou to the Gongfu tea rituals of Fujian, explore the depth of China's tea culture.",
+                image: "https://images.unsplash.com/photo-1496664444929-8c75efb9546f?q=80&w=800&auto=format&fit=crop"
+            },
+            {
+                id: 5,
+                title: "Essential Apps for Traveling in China",
+                category: "tips",
+                date: "Dec 05, 2025",
+                excerpt: "Surviving without cash? How to use Alipay, WeChat, and navigation apps like Amap to travel like a local.",
+                image: "https://images.unsplash.com/photo-1742836531239-1fe146bf7e3f?q=80&w=800&auto=format&fit=crop"
+            },
+            {
+                id: 6,
+                title: "Cruising the Li River: Guilin to Yangshuo",
+                category: "nature",
+                date: "Dec 12, 2025",
+                excerpt: "The landscape painted on the 20 RMB note. Why a private bamboo raft beat the big cruise ships every time.",
+                image: "https://images.unsplash.com/photo-1659233306527-226a26a08634?q=80&w=800&auto=format&fit=crop"
+            },
+            {
+                id: 7,
+                title: "Dim Sum Etiquette: Do's and Don'ts",
+                category: "food",
+                date: "Jan 03, 2026",
+                excerpt: "The tradition of Yum Cha in Guangzhou. Learn the secret tapping gesture and how to order like a pro.",
+                image: "https://images.unsplash.com/photo-1769251297393-8178b5988b08?q=80&w=800&auto=format&fit=crop"
+            },
+            {
+                id: 8,
+                title: "The Great Wall: Avoiding the Crowds",
+                category: "nature",
+                date: "Jan 15, 2026",
+                excerpt: "Skip Badaling. We compare Mutianyu, Jinshanling, and the wild Jiankou sections for the best experience.",
+                image: "https://images.unsplash.com/photo-1718027808460-7069cf0ca9ae?q=80&w=800&auto=format&fit=crop"
+            },
+            {
+                id: 9,
+                title: "High-Speed Rail: A Beginner's Guide",
+                category: "tips",
+                date: "Jan 20, 2026",
+                excerpt: "China's HSR network is a marvel. How to book tickets, navigate stations, and travel at 350km/h.",
+                image: "https://images.unsplash.com/photo-1769708427666-53ec40bf2cf7?q=80&w=800&auto=format&fit=crop"
+            }
+        ];
+
+        // Render Function
+        const grid = document.getElementById('blogGrid');
+        
+        function renderPosts(category) {
+            grid.innerHTML = '';
+            
+            const filtered = category === 'all' 
+                ? blogPosts 
+                : blogPosts.filter(post => post.category === category);
+                
+            filtered.forEach(post => {
+                const card = document.createElement('article');
+                card.className = 'blog-card';
+                card.innerHTML = `
+                    <div class="blog-card-image">
+                        <img src="${post.image}" alt="${post.title}" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=800&auto=format&fit=crop'">
+                    </div>
+                    <div class="blog-card-content">
+                        <span class="blog-category">${post.category}</span>
+                        <h3 class="blog-title">${post.title}</h3>
+                        <p class="blog-excerpt">${post.excerpt}</p>
+                        <div class="blog-meta">
+                            <span>${post.date}</span>
+                            <a href="#" class="read-more">
+                                Read Story
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Filter Logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update Active State
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Filter Grid
+                const cat = btn.getAttribute('data-category');
+                renderPosts(cat);
             });
         });
+
+        // Initial Render
+        renderPosts('all');
     </script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

@@ -110,6 +110,36 @@
             width: 100%;
         }
 
+        /* My Account button should look like nav links */
+        .nav-links .user-menu-btn {
+            color: var(--color-white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+        }
+
+        nav.scrolled .nav-links .user-menu-btn {
+            color: var(--color-text);
+        }
+
+        /* User menu dropdown positioning */
+        .nav-links .user-menu-container {
+            position: relative;
+        }
+
+        .nav-links .user-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 8px;
+        }
+
+        .nav-links .user-dropdown.active {
+            transform: translateX(-50%) translateY(0);
+        }
+
         .nav-cta {
             background: var(--color-white);
             color: var(--color-forest) !important;
@@ -410,12 +440,14 @@
         }
 
         .stat-number {
-            font-family: var(--font-serif);
+            font-family: var(--font-sans);
             font-size: 3.5rem;
-            font-weight: 500;
+            font-weight: 600;
             color: var(--color-forest);
             line-height: 1;
             margin-bottom: 0.5rem;
+            font-variant-numeric: tabular-nums;
+            letter-spacing: -0.02em;
         }
 
         .stat-label {
@@ -442,6 +474,9 @@
             padding: 2.5rem;
             border-radius: 4px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .testimonial-text {
@@ -457,6 +492,7 @@
             display: flex;
             align-items: center;
             gap: 1rem;
+            margin-top: auto;
         }
 
         .author-avatar {
@@ -468,8 +504,10 @@
             align-items: center;
             justify-content: center;
             color: var(--color-white);
-            font-family: var(--font-serif);
-            font-size: 1.2rem;
+            font-family: var(--font-sans);
+            font-size: 1.1rem;
+            font-weight: 600;
+            flex-shrink: 0;
         }
 
         .author-info {
@@ -640,6 +678,10 @@
                 display: none;
             }
 
+            .hamburger {
+                display: flex;
+            }
+
             section {
                 padding: 4rem 5%;
             }
@@ -662,19 +704,145 @@
                 justify-content: center;
             }
         }
+
+        /* Hamburger Menu Button */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 0;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: var(--color-white);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled .hamburger span {
+            background: var(--color-forest);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        /* Mobile Navigation Overlay */
+        .nav-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 58, 47, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .nav-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 320px;
+                height: 100vh;
+                background: rgba(26, 58, 47, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                padding: 4rem 2rem;
+                transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 1000;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li {
+                opacity: 0;
+                transform: translateX(30px);
+                transition: all 0.4s ease;
+            }
+
+            .nav-links.active li {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            .nav-links.active li:nth-child(1) { transition-delay: 0.1s; }
+            .nav-links.active li:nth-child(2) { transition-delay: 0.15s; }
+            .nav-links.active li:nth-child(3) { transition-delay: 0.2s; }
+            .nav-links.active li:nth-child(4) { transition-delay: 0.25s; }
+            .nav-links.active li:nth-child(5) { transition-delay: 0.3s; }
+            .nav-links.active li:nth-child(6) { transition-delay: 0.35s; }
+
+            .nav-links a {
+                font-size: 1.2rem;
+                color: var(--color-white);
+            }
+
+            .nav-links a::after {
+                display: none;
+            }
+
+            .nav-cta {
+                background: var(--color-gold);
+                color: var(--color-forest) !important;
+                padding: 1rem 2rem !important;
+            }
+
+            body.menu-open {
+                overflow: hidden;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav id="navbar">
+    <nav id="navbar" class="nav">
         <a href="#" class="logo">lulutravel</a>
-        <ul class="nav-links">
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
             <li><a href="#trips">Our Trips</a></li>
-            <li><a href="#why-us">Why Us</a></li>
-            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="about.html">About</a></li>
             <li><a href="faq.html">FAQ</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="login.html" class="nav-cta">Sign In</a></li>
+            <li id="auth-item-container"><a href="login.html" class="nav-cta" id="authLink">Sign In</a></li>
         </ul>
     </nav>
 
@@ -719,7 +887,7 @@
                 </div>
             </div>
             <div class="trip-card">
-                <div class="trip-image" style="background-image: url('https://images.unsplash.com/photo-1569949380638-555a28b7475f?w=800&q=80')"></div>
+                <div class="trip-image" style="background-image: url('https://images.unsplash.com/photo-1580828343064-fde4fc206bc6?w=800&q=80')"></div>
                 <div class="trip-overlay"></div>
                 <div class="trip-content">
                     <p class="trip-category">6 Days</p>
@@ -734,7 +902,7 @@
                 </div>
             </div>
             <div class="trip-card">
-                <div class="trip-image" style="background-image: url('https://images.unsplash.com/photo-1580477667995-2b94f01c9516?w=800&q=80')"></div>
+                <div class="trip-image" style="background-image: url('https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=800&q=80')"></div>
                 <div class="trip-overlay"></div>
                 <div class="trip-content">
                     <p class="trip-category">7 Days</p>
@@ -844,8 +1012,8 @@
         <div class="cta-overlay"></div>
         <div class="cta-content">
             <h2 class="cta-title">Ready to Discover China?</h2>
-            <p class="cta-desc">Small groups, local experts, unforgettable experiences. Book your adventure today and get 10% off your first trip.</p>
-            <a href="#" class="cta-btn">
+            <p class="cta-desc">Small groups, local experts, and unforgettable experiences. Let us craft your perfect adventure.</p>
+            <a href="product-classic.html" class="cta-btn">
                 Start Your Journey
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -861,36 +1029,40 @@
                 <div class="footer-brand">lulutravel</div>
                 <p class="footer-desc">Premium small-group tours of China. Curated experiences, expert guides, and memories that last a lifetime.</p>
                 <div class="footer-social">
-                    <a href="#">Instagram</a>
-                    <a href="#">YouTube</a>
-                    <a href="#">TikTok</a>
+                    <a href="#" aria-label="Instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618 6.98-6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="WeChat">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 0 1 .598.082l1.584.926a.272.272 0 0 0 .14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 0 1-.023-.156.49.49 0 0 1 .201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89l-.006-.033zm-3.61 2.852c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.969-.982z"/>
+                        </svg>
+                    </a>
+                    <a href="mailto:concierge@lulutravel.com" aria-label="Email">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                    </a>
                 </div>
+                <p style="margin-top: 16px; font-size: 0.875rem; color: var(--color-text-light);">
+                    <a href="mailto:concierge@lulutravel.com" style="color: var(--color-green-dark);">concierge@lulutravel.com</a>
+                </p>
             </div>
             <div>
                 <h4 class="footer-title">Tours</h4>
                 <ul class="footer-links">
-                    <li><a href="#">Classic China</a></li>
-                    <li><a href="#">Culinary Journey</a></li>
-                    <li><a href="#">Nature & Wellness</a></li>
-                    <li><a href="#">Custom Tours</a></li>
+                    <li><a href="product-classic.html">Classic China</a></li>
+                    <li><a href="product-culinary.html">Culinary Journey</a></li>
+                    <li><a href="product-nature.html">Nature & Wellness</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="footer-title">Company</h4>
                 <ul class="footer-links">
                     <li><a href="about.html">About Us</a></li>
-                    <li><a href="#">Our Guides</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="#">Careers</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="footer-title">Support</h4>
-                <ul class="footer-links">
                     <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="booking.html">Booking Info</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="terms.html">Terms</a></li>
                 </ul>
             </div>
         </div>
@@ -899,6 +1071,13 @@
         </div>
     </footer>
 
+    <!-- Dropdown CSS -->
+    <link rel="stylesheet" href="css/dropdown.css">
+    
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth.js"></script>
     <script>
         // Navbar scroll effect
         window.addEventListener('scroll', function() {
@@ -907,6 +1086,29 @@
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+
+            if (hamburger && navLinks) {
+                hamburger.addEventListener('click', function() {
+                    hamburger.classList.toggle('active');
+                    navLinks.classList.toggle('active');
+                    document.body.classList.toggle('menu-open');
+                });
+
+                // Close menu when clicking a link
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        hamburger.classList.remove('active');
+                        navLinks.classList.remove('active');
+                        document.body.classList.remove('menu-open');
+                    });
+                });
             }
         });
 

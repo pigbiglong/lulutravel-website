@@ -2,19 +2,32 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     // Mobile Navigation
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const navLinks = document.querySelector('.nav-links');
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    const navOverlay = document.getElementById('navOverlay');
+    const navbar = document.getElementById('navbar');
 
-    if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener('click', function() {
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
             navLinks.classList.toggle('active');
-            this.classList.toggle('active');
+            if (navOverlay) navOverlay.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
         });
+
+        if (navOverlay) {
+            navOverlay.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                navOverlay.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            });
+        }
     }
 
     // Navbar scroll effect
-    const navbar = document.querySelector('.navbar');
-    let lastScroll = 0;
+    if (navbar) {
+        let lastScroll = 0;
 
     window.addEventListener('scroll', function() {
         const currentScroll = window.pageYOffset;

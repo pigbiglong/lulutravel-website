@@ -8,6 +8,37 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Supabase SDK (Module) -->
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+        
+        console.log('Initializing Supabase (Module)...');
+        var SUPABASE_URL = 'https://zhlldovnjbfyznyrvwma.supabase.co';
+        var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpobGxkb3ZuamJmeXpueXJ2d21hIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAyNDg5MDcsImV4cCI6MjA4NTgyNDkwN30.lzljjCLKrph6ZXN_VZycVfYHHN90yMljwwreoFULsMQ';
+        
+        window.supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        console.log('Supabase client initialized (Module)');
+
+        // Helper: Get redirect URL
+        function getRedirectUrl() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('redirect') || 'index.html';
+        }
+
+        // IMMEDIATE CHECK: If session exists, redirect immediately
+        // This runs inside the module, ensuring supabaseClient is ready
+        window.supabaseClient.auth.getSession().then(({ data: { session } }) => {
+            if (session) {
+                console.log('Session found, redirecting immediately...');
+                window.location.replace(getRedirectUrl());
+            } else {
+                console.log('No session found, showing login form.');
+            }
+        });
+    </script>
+    <script src="js/auth.js"></script>
+
     <style>
         * {
             margin: 0;
@@ -60,14 +91,13 @@
         .auth-tab {
             flex: 1;
             padding: 16px;
-            text-align: center;
-            background: none;
             border: none;
-            font-size: 15px;
+            background: none;
+            font-size: 14px;
             font-weight: 500;
             color: #666;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
             position: relative;
         }
 
@@ -78,15 +108,23 @@
         .auth-tab.active::after {
             content: '';
             position: absolute;
-            bottom: -1px;
+            bottom: 0;
             left: 0;
             right: 0;
-            height: 3px;
+            height: 2px;
             background: #1a5f3c;
         }
 
         .auth-form {
             padding: 30px 40px;
+        }
+
+        .login-form, .register-form, .forgot-form {
+            display: none;
+        }
+
+        .login-form.active, .register-form.active, .forgot-form.active {
+            display: block;
         }
 
         .form-group {
@@ -95,39 +133,38 @@
 
         .form-group label {
             display: block;
-            margin-bottom: 8px;
-            color: #333;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
+            color: #333;
+            margin-bottom: 8px;
         }
 
         .form-group input {
             width: 100%;
             padding: 14px 16px;
-            border: 2px solid #e0e5e3;
+            border: 1px solid #ddd;
             border-radius: 8px;
-            font-size: 15px;
-            transition: all 0.3s ease;
+            font-size: 14px;
+            transition: all 0.3s;
         }
 
         .form-group input:focus {
             outline: none;
-            border-color: #1a7a65;
-            box-shadow: 0 0 0 4px rgba(26, 122, 101, 0.1);
+            border-color: #1a5f3c;
+            box-shadow: 0 0 0 3px rgba(26, 95, 60, 0.1);
         }
 
         .submit-btn {
             width: 100%;
-            padding: 16px;
+            padding: 14px;
             background: linear-gradient(135deg, #1a5f3c 0%, #2d8a5e 100%);
             color: white;
             border: none;
             border-radius: 8px;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
+            transition: all 0.3s;
         }
 
         .submit-btn:hover {
@@ -136,37 +173,53 @@
         }
 
         .submit-btn:disabled {
-            opacity: 0.7;
+            opacity: 0.6;
             cursor: not-allowed;
             transform: none;
         }
 
         .footer-link {
             text-align: center;
-            margin-top: 25px;
-            color: #666;
-            font-size: 14px;
+            margin-top: 20px;
         }
 
         .footer-link a {
             color: #1a5f3c;
             text-decoration: none;
-            font-weight: 500;
-            cursor: pointer;
+            font-size: 14px;
         }
 
         .footer-link a:hover {
             text-decoration: underline;
         }
 
+        .back-to-login {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-to-login a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back-to-login a:hover {
+            color: #333;
+        }
+
+        .error-message, .success-message {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+
         .error-message {
             background: #fee;
             color: #c00;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 14px;
-            margin-bottom: 20px;
-            display: none;
+            border: 1px solid #fcc;
         }
 
         .error-message.show {
@@ -176,11 +229,7 @@
         .success-message {
             background: #efe;
             color: #060;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 14px;
-            margin-bottom: 20px;
-            display: none;
+            border: 1px solid #cfc;
         }
 
         .success-message.show {
@@ -190,7 +239,7 @@
         .logged-in-view {
             display: none;
             text-align: center;
-            padding: 40px 0;
+            padding: 40px;
         }
 
         .logged-in-view.show {
@@ -203,38 +252,13 @@
         }
 
         .logged-in-view h2 {
-            color: #1a5f3c;
-            margin-bottom: 15px;
+            color: #1a3a2f;
+            margin-bottom: 10px;
         }
 
         .logged-in-view p {
             color: #666;
             margin-bottom: 30px;
-        }
-
-        .login-form, .register-form, .forgot-form {
-            display: none;
-        }
-
-        .login-form.active, .register-form.active, .forgot-form.active {
-            display: block;
-        }
-
-        .back-to-login {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 14px;
-        }
-
-        .back-to-login a {
-            color: #1a5f3c;
-            text-decoration: none;
-            font-weight: 500;
-            cursor: pointer;
-        }
-
-        .back-to-login a:hover {
-            text-decoration: underline;
         }
     </style>
 </head>
@@ -326,47 +350,14 @@
         </div>
     </div>
 
-    <script>
-        // 本地存储模拟（用于演示，无需服务器）
-        const localAuth = {
-            users: JSON.parse(localStorage.getItem('lulutravel_users') || '[]'),
-            currentUser: JSON.parse(localStorage.getItem('lulutravel_currentUser') || 'null'),
-            saveUsers: function() { localStorage.setItem('lulutravel_users', JSON.stringify(this.users)); },
-            saveCurrentUser: function() { localStorage.setItem('lulutravel_currentUser', JSON.stringify(this.currentUser)); },
-            signUp: function(email, password, name) {
-                if (this.users.find(u => u.email === email)) return { error: { message: 'Email already registered' } };
-                const user = { email, password, name, id: Date.now() };
-                this.users.push(user);
-                this.saveUsers();
-                this.currentUser = { email, name, id: user.id };
-                this.saveCurrentUser();
-                return { data: { user: this.currentUser, session: { user: this.currentUser } }, error: null };
-            },
-            signIn: function(email, password) {
-                const user = this.users.find(u => u.email === email && u.password === password);
-                if (!user) return { error: { message: 'Invalid email or password' } };
-                this.currentUser = { email: user.email, name: user.name, id: user.id };
-                this.saveCurrentUser();
-                return { data: { user: this.currentUser, session: { user: this.currentUser } }, error: null };
-            },
-            signOut: function() { this.currentUser = null; this.saveCurrentUser(); return { error: null }; },
-            getSession: function() { return { data: { session: this.currentUser ? { user: this.currentUser } : null } }; },
-            resetPassword: function(email) {
-                const user = this.users.find(u => u.email === email);
-                if (!user) return { error: { message: 'Email not found' } };
-                return { error: null };
-            }
-        };
+    <script type="module">
+        var supabaseClient = window.supabaseClient;
 
-        // 包装器统一接口（使用本地存储）
-        const auth = {
-            signUp: async (params) => localAuth.signUp(params.email, params.password, params.options && params.options.data ? params.options.data.name : ''),
-            signIn: async (params) => localAuth.signIn(params.email, params.password),
-            signOut: async () => localAuth.signOut(),
-            getSession: async () => localAuth.getSession(),
-            resetPassword: async (email) => localAuth.resetPassword(email),
-            onAuthStateChange: (cb) => null
-        };
+        // Helper: Get redirect URL (Redundant but needed for scope)
+        function getRedirectUrl() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('redirect') || 'index.html';
+        }
 
         // Tab switching
         document.querySelectorAll('.auth-tab').forEach(function(tab) {
@@ -420,14 +411,10 @@
             hideMessages();
         }
 
-        // Check auth
-        auth.getSession().then(function(_ref) {
-            var data = _ref.data;
-            var session = data.session;
-            if (session) showLoggedInView(session.user);
-        });
+        // Removed: Old race-condition prone session check
+        // The check is now done in the first script tag to ensure priority.
 
-        // Login
+        // Login with Supabase
         document.getElementById('loginForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             hideMessages();
@@ -437,26 +424,35 @@
             btn.disabled = true;
 
             try {
-                var ref = await auth.signIn({
+                console.log('Attempting signIn with:', document.getElementById('loginEmail').value);
+                const { data, error } = await supabaseClient.auth.signInWithPassword({
                     email: document.getElementById('loginEmail').value,
                     password: document.getElementById('loginPassword').value
                 });
-                var error = ref.error;
-                var data = ref.data;
+
+                console.log('SignIn response:', { data, error });
+                
                 if (error) {
+                    console.error('SignIn error:', error);
                     showError(error.message);
                 } else {
                     showLoggedInView(data.user);
+                    showSuccess('Welcome back!');
+                    setTimeout(function() {
+                        // Force reload to ensure auth state is synced across all pages
+                        window.location.href = getRedirectUrl();
+                    }, 1000);
                 }
             } catch (err) {
-                showError('An error occurred. Please try again.');
+                console.error('SignIn exception:', err);
+                showError('An error occurred: ' + err.message);
             } finally {
                 btn.textContent = originalText;
                 btn.disabled = false;
             }
         });
 
-        // Register
+        // Register with Supabase
         document.getElementById('registerForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             hideMessages();
@@ -476,26 +472,37 @@
             btn.disabled = true;
 
             try {
-                var ref = await auth.signUp({
+                console.log('Attempting signUp with:', document.getElementById('registerEmail').value);
+                const { data, error } = await supabaseClient.auth.signUp({
                     email: document.getElementById('registerEmail').value,
                     password: password,
-                    options: { data: { name: document.getElementById('registerName').value } }
+                    options: { 
+                        data: { 
+                            name: document.getElementById('registerName').value 
+                        } 
+                    }
                 });
-                var error = ref.error;
-                var data = ref.data;
+                
+                console.log('SignUp response:', { data, error });
+                
                 if (error) {
+                    console.error('SignUp error:', error);
                     showError(error.message);
                 } else {
                     if (data.session) {
                         showLoggedInView(data.user);
                         showSuccess('Account created successfully!');
+                        setTimeout(function() {
+                            window.location.href = getRedirectUrl();
+                        }, 1500);
                     } else {
-                        showSuccess('Account created! Please check your email to verify.');
+                        showSuccess('Account created! Please check your email to verify your account.');
                         this.reset();
                     }
                 }
             } catch (err) {
-                showError('An error occurred. Please try again.');
+                console.error('SignUp exception:', err);
+                showError('An error occurred: ' + err.message);
             } finally {
                 btn.textContent = originalText;
                 btn.disabled = false;
@@ -509,7 +516,6 @@
             document.querySelector('.login-form').classList.remove('active');
             document.querySelector('.register-form').classList.remove('active');
             document.querySelector('.forgot-form').classList.add('active');
-            // Pre-fill email if available
             var loginEmail = document.getElementById('loginEmail').value;
             if (loginEmail) {
                 document.getElementById('forgotEmail').value = loginEmail;
@@ -535,9 +541,13 @@
             btn.disabled = true;
 
             try {
-                var ref = await auth.resetPassword(document.getElementById('forgotEmail').value);
-                if (ref.error) {
-                    showError(ref.error.message);
+                const { error } = await supabaseClient.auth.resetPasswordForEmail(
+                    document.getElementById('forgotEmail').value,
+                    { redirectTo: window.location.origin + '/login.html' }
+                );
+                
+                if (error) {
+                    showError(error.message);
                 } else {
                     showSuccess('Password reset link sent! Please check your email.');
                     this.reset();
@@ -552,16 +562,23 @@
 
         // Logout
         document.getElementById('logoutBtn').addEventListener('click', async function() {
-            var result = await auth.signOut();
-            if (result.error) {
-                showError(result.error.message);
+            const { error } = await supabaseClient.auth.signOut();
+            if (error) {
+                showError(error.message);
             } else {
                 showLoginView();
                 showSuccess('You have been signed out.');
             }
         });
 
-        // Auth state change not needed for local auth
+        // Listen for auth state changes
+        supabaseClient.auth.onAuthStateChange(function(event, session) {
+            if (event === 'SIGNED_IN' && session) {
+                showLoggedInView(session.user);
+            } else if (event === 'SIGNED_OUT') {
+                showLoginView();
+            }
+        });
     </script>
 </body>
 </html>

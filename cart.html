@@ -4,256 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart - lulutravel</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background: #f8f6f3;
-            min-height: 100vh;
-        }
-
-        .header {
-            background: white;
-            padding: 20px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        .logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 24px;
-            color: #1a3a2f;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: #333;
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        .nav-links a:hover {
-            color: #1a5f3c;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 36px;
-            color: #1a3a2f;
-            margin-bottom: 30px;
-        }
-
-        .cart-empty {
-            text-align: center;
-            padding: 80px 20px;
-            background: white;
-            border-radius: 12px;
-        }
-
-        .cart-empty .icon {
-            font-size: 64px;
-            margin-bottom: 20px;
-        }
-
-        .cart-empty h2 {
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .cart-empty p {
-            color: #666;
-            margin-bottom: 30px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 14px 28px;
-            background: linear-gradient(135deg, #1a5f3c 0%, #2d8a5e 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(26, 95, 60, 0.3);
-        }
-
-        .cart-items {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        .cart-item {
-            display: flex;
-            padding: 25px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .cart-item:last-child {
-            border-bottom: none;
-        }
-
-        .item-image {
-            width: 150px;
-            height: 100px;
-            background: linear-gradient(135deg, #1a5f3c 0%, #2d8a5e 100%);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            color: white;
-            flex-shrink: 0;
-        }
-
-        .item-details {
-            flex: 1;
-            padding: 0 20px;
-        }
-
-        .item-details h3 {
-            color: #1a3a2f;
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
-
-        .item-details p {
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 5px;
-        }
-
-        .item-meta {
-            display: flex;
-            gap: 20px;
-            margin-top: 10px;
-        }
-
-        .item-meta span {
-            background: #f5f5f5;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 13px;
-            color: #666;
-        }
-
-        .item-actions {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 15px;
-        }
-
-        .item-price {
-            font-size: 20px;
-            font-weight: 600;
-            color: #1a5f3c;
-        }
-
-        .remove-btn {
-            background: none;
-            border: none;
-            color: #999;
-            cursor: pointer;
-            font-size: 13px;
-        }
-
-        .remove-btn:hover {
-            color: #c00;
-        }
-
-        .cart-summary {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            margin-top: 20px;
-        }
-
-        .summary-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .summary-row:last-child {
-            border-bottom: none;
-            font-weight: 600;
-            font-size: 18px;
-        }
-
-        .checkout-btn {
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        .login-prompt {
-            background: #fff8e6;
-            border: 1px solid #ffd666;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .login-prompt a {
-            color: #1a5f3c;
-            font-weight: 600;
-        }
-
-        /* Auth required overlay */
-        .auth-overlay {
-            display: none;
-        }
-
-        .auth-overlay.show {
-            display: block;
-        }
-
-        .guest-view {
-            display: block;
-        }
-
-        .guest-view.hidden {
-            display: none;
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500&family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/dropdown.css">
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
 </head>
 <body>
-    <header class="header">
-        <a href="index.html" class="logo">✈️ lulutravel</a>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="product.html">Tours</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="cart.html">Cart (<span id="cartCount">0</span>)</a></li>
-            <li><a href="login.html" id="authLink">Sign In</a></li>
-        </ul>
-    </header>
+    <!-- Navigation -->
+    <nav class="nav" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">lulutravel</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#trips">Our Trips</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li id="auth-item-container"><a href="login.html" class="nav-cta" id="authLink">Sign In</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="nav-overlay" id="navOverlay"></div>
 
     <div class="container">
         <h1>🛒 Your Trip Planning</h1>
@@ -290,10 +69,6 @@
     </div>
 
     <script>
-        const supabaseUrl = 'https://zhlldovnjbfyznyrvwma.supabase.co';
-        const supabaseKey = 'sb_publishable_DqLUm1QC8717HbqkCk5puA_Jc-dst9r';
-        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-
         // Cart storage key
         const CART_KEY = 'lulutravel_cart';
 
@@ -311,7 +86,20 @@
         // Update cart count in header
         function updateCartCount() {
             const cart = loadCart();
-            document.getElementById('cartCount').textContent = cart.length;
+            const cartCountEl = document.getElementById('cartCount');
+            if (cartCountEl) {
+                cartCountEl.textContent = cart.length;
+            }
+        }
+
+        // Update quantity
+        function updateQuantity(index, change) {
+            const cart = loadCart();
+            if (cart[index]) {
+                cart[index].travelers = Math.max(1, (cart[index].travelers || 1) + change);
+                saveCart(cart);
+                renderCart();
+            }
         }
 
         // Render cart
@@ -326,10 +114,10 @@
                         <div class="icon">🛒</div>
                         <h2>Your cart is empty</h2>
                         <p>Start planning your dream trip to China!</p>
-                        <a href="product.html" class="btn">Explore Tours →</a>
+                        <a href="product-classic.html" class="btn">Explore Tours →</a>
                     </div>
                 `;
-                summary.style.display = 'none';
+                if (summary) summary.style.display = 'none';
                 return;
             }
 
@@ -350,6 +138,11 @@
                             </div>
                         </div>
                         <div class="item-actions">
+                            <div class="quantity-control" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                                <button onclick="updateQuantity(${index}, -1)" style="width: 30px; height: 30px; border: 1px solid #ddd; background: white; border-radius: 4px; cursor: pointer;">-</button>
+                                <span>${item.travelers || 1}</span>
+                                <button onclick="updateQuantity(${index}, 1)" style="width: 30px; height: 30px; border: 1px solid #ddd; background: white; border-radius: 4px; cursor: pointer;">+</button>
+                            </div>
                             <div class="item-price">$${total.toLocaleString()}</div>
                             <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
                         </div>
@@ -365,10 +158,18 @@
             const serviceFee = subtotal * 0.05;
             const total = subtotal + serviceFee;
 
-            document.getElementById('subtotal').textContent = '$' + subtotal.toLocaleString();
-            document.getElementById('serviceFee').textContent = '$' + serviceFee.toLocaleString();
-            document.getElementById('total').textContent = '$' + total.toLocaleString();
-            summary.style.display = 'block';
+            if (document.getElementById('subtotal')) {
+                document.getElementById('subtotal').textContent = '$' + subtotal.toLocaleString();
+            }
+            if (document.getElementById('serviceFee')) {
+                document.getElementById('serviceFee').textContent = '$' + serviceFee.toLocaleString();
+            }
+            if (document.getElementById('total')) {
+                document.getElementById('total').textContent = '$' + total.toLocaleString();
+            }
+            if (summary) {
+                summary.style.display = 'block';
+            }
         }
 
         // Remove item from cart
@@ -379,19 +180,237 @@
             renderCart();
         }
 
-        // Proceed to checkout
+        // Proceed to checkout - Save orders to Supabase
         async function proceedToCheckout() {
-            const { data: { session } } = await supabase.auth.getSession();
+            const cart = loadCart();
 
-            if (!session) {
-                alert('Please sign in to complete your booking.');
-                window.location.href = 'login.html';
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
                 return;
             }
 
-            // Check if Stripe is configured
-            alert('Payment system coming soon! Please use our inquiry form to book.');
+            // Check if user is logged in using Supabase
+            const { data: { session } } = await supabase.auth.getSession();
+
+            if (!session) {
+                // Show login modal instead of redirecting
+                showModal();
+                return;
+            }
+
+            await submitCheckoutOrder(session);
         }
+
+        // Submit order after successful login
+        async function submitCheckoutOrder(session) {
+            const cart = loadCart();
+
+            // Save each cart item as an order
+            try {
+                for (const item of cart) {
+                    const orderData = {
+                        user_id: session.user.id,
+                        tour_name: item.name,
+                        tour_route: item.route || '',
+                        tour_icon: item.icon || '✈️',
+                        price: item.price,
+                        travelers: item.travelers || 1,
+                        days: item.days || 7,
+                        travel_date: item.date || null,
+                        status: 'pending'
+                    };
+
+                    const { error } = await supabase.from('orders').insert([orderData]);
+                    if (error) {
+                        console.error('Error saving order:', error);
+                    }
+                }
+
+                // Clear cart after successful order
+                localStorage.setItem(CART_KEY, '[]');
+
+                alert('Order submitted successfully! View your orders in your profile.');
+                window.location.href = 'profile.html';
+            } catch (err) {
+                console.error('Checkout error:', err);
+                alert('An error occurred during checkout. Please try again.');
+            }
+        }
+
+        // Modal functions
+        function showModal() {
+            document.getElementById('loginModal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function hideModal() {
+            document.getElementById('loginModal').classList.remove('show');
+            document.body.style.overflow = '';
+            hideModalMessages();
+        }
+
+        function showModalError(msg) {
+            const el = document.getElementById('modalMessage');
+            el.textContent = msg;
+            el.className = 'modal-message error';
+        }
+
+        function showModalSuccess(msg) {
+            const el = document.getElementById('modalMessage');
+            el.textContent = msg;
+            el.className = 'modal-message success';
+        }
+
+        function hideModalMessages() {
+            document.getElementById('modalMessage').className = 'modal-message';
+        }
+
+        // Modal tab switching
+        document.querySelectorAll('.modal-tab').forEach(function(tab) {
+            tab.addEventListener('click', function() {
+                const tabName = this.dataset.tab;
+                document.querySelectorAll('.modal-tab').forEach(function(t) { t.classList.remove('active'); });
+                this.classList.add('active');
+                document.getElementById('modalLoginForm').classList.remove('active');
+                document.getElementById('modalRegisterForm').classList.remove('active');
+                document.getElementById('modalForgotForm').classList.remove('active');
+                document.getElementById('modal' + tabName.charAt(0).toUpperCase() + tabName.slice(1) + 'Form').classList.add('active');
+                hideModalMessages();
+            });
+        });
+
+        // Show forgot password form
+        document.getElementById('modalForgotPassword').addEventListener('click', function() {
+            hideModalMessages();
+            document.querySelectorAll('.modal-tab').forEach(function(t) { t.classList.remove('active'); });
+            document.getElementById('modalLoginForm').classList.remove('active');
+            document.getElementById('modalRegisterForm').classList.remove('active');
+            document.getElementById('modalForgotForm').classList.add('active');
+            const loginEmail = document.getElementById('modalLoginEmail').value;
+            if (loginEmail) {
+                document.getElementById('modalForgotEmail').value = loginEmail;
+            }
+        });
+
+        // Back to login from forgot password
+        document.getElementById('modalBackToLogin').addEventListener('click', function() {
+            hideModalMessages();
+            document.querySelector('.modal-tab[data-tab="login"]').classList.add('active');
+            document.querySelector('.modal-tab[data-tab="register"]').classList.remove('active');
+            document.getElementById('modalForgotForm').classList.remove('active');
+            document.getElementById('modalLoginForm').classList.add('active');
+        });
+
+        // Close modal
+        document.getElementById('closeModal').addEventListener('click', hideModal);
+        document.getElementById('loginModal').addEventListener('click', function(e) {
+            if (e.target === this) hideModal();
+        });
+
+        // Modal Login
+        document.getElementById('modalLoginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            hideModalMessages();
+            const btn = this.querySelector('.modal-btn');
+            btn.textContent = 'Signing in...';
+            btn.disabled = true;
+
+            try {
+                const { error, data } = await supabase.auth.signInWithPassword({
+                    email: document.getElementById('modalLoginEmail').value,
+                    password: document.getElementById('modalLoginPassword').value
+                });
+
+                if (error) {
+                    showModalError(error.message);
+                } else {
+                    hideModal();
+                    await checkAuth();
+                    // Submit the order after successful login
+                    const { data: { session } } = await supabase.auth.getSession();
+                    if (session) {
+                        await submitCheckoutOrder(session);
+                    }
+                }
+            } catch (err) {
+                showModalError('An error occurred. Please try again.');
+            } finally {
+                btn.textContent = 'Sign In →';
+                btn.disabled = false;
+            }
+        });
+
+        // Modal Register
+        document.getElementById('modalRegisterForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            hideModalMessages();
+            const password = document.getElementById('modalRegisterPassword').value;
+            const confirm = document.getElementById('modalRegisterConfirm').value;
+            if (password !== confirm) {
+                showModalError('Passwords do not match.');
+                return;
+            }
+            const btn = this.querySelector('.modal-btn');
+            btn.textContent = 'Creating account...';
+            btn.disabled = true;
+
+            try {
+                const { error, data } = await supabase.auth.signUp({
+                    email: document.getElementById('modalRegisterEmail').value,
+                    password: password,
+                    options: { data: { name: document.getElementById('modalRegisterName').value } }
+                });
+
+                if (error) {
+                    showModalError(error.message);
+                } else {
+                    if (data.session) {
+                        hideModal();
+                        await checkAuth();
+                        const { data: { session } } = await supabase.auth.getSession();
+                        if (session) {
+                            await submitCheckoutOrder(session);
+                        }
+                    } else {
+                        showModalSuccess('Account created! Please check your email to verify.');
+                        this.reset();
+                    }
+                }
+            } catch (err) {
+                showModalError('An error occurred. Please try again.');
+            } finally {
+                btn.textContent = 'Create Account →';
+                btn.disabled = false;
+            }
+        });
+
+        // Modal Forgot Password Submit
+        document.getElementById('modalForgotForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            hideModalMessages();
+            const btn = this.querySelector('.modal-btn');
+            btn.textContent = 'Sending...';
+            btn.disabled = true;
+
+            try {
+                const { error } = await supabase.auth.resetPasswordForEmail(
+                    document.getElementById('modalForgotEmail').value,
+                    { redirectTo: window.location.origin + '/login.html' }
+                );
+
+                if (error) {
+                    showModalError(error.message);
+                } else {
+                    showModalSuccess('Password reset link sent! Please check your email.');
+                    this.reset();
+                }
+            } catch (err) {
+                showModalError('An error occurred. Please try again.');
+            } finally {
+                btn.textContent = 'Send Reset Link →';
+                btn.disabled = false;
+            }
+        });
 
         // Add to cart (called from product page)
         function addToCart(item) {
@@ -401,12 +420,12 @@
             alert('Added to cart!');
         }
 
-        // Check auth status
+        // Check auth status using Supabase
         async function checkAuth() {
             const { data: { session } } = await supabase.auth.getSession();
             const authLink = document.getElementById('authLink');
 
-            if (session) {
+            if (session && session.user) {
                 authLink.textContent = 'My Account';
                 authLink.href = 'profile.html';
             } else {
@@ -415,17 +434,144 @@
             }
         }
 
+        // Listen for auth state changes
+        supabase.auth.onAuthStateChange((event, session) => {
+            checkAuth();
+        });
+
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             renderCart();
             updateCartCount();
             checkAuth();
-
-            // Listen for auth changes
-            supabase.auth.onAuthStateChange((event, session) => {
-                checkAuth();
-            });
         });
     </script>
+
+    <!-- Login Modal -->
+    <div class="modal-overlay" id="loginModal">
+        <div style="position: relative;">
+            <button class="modal-close" id="closeModal">×</button>
+            <div class="modal-container">
+                <div class="modal-header">
+                    <h2>✈️ lulutravel</h2>
+                    <p>Sign in to complete your booking</p>
+                </div>
+                <div class="modal-tabs">
+                    <button class="modal-tab active" data-tab="login">Sign In</button>
+                    <button class="modal-tab" data-tab="register">Create Account</button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-message" id="modalMessage"></div>
+
+                    <!-- Login Form -->
+                    <form class="modal-form active" id="modalLoginForm">
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" id="modalLoginEmail" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" id="modalLoginPassword" placeholder="Enter your password" required>
+                        </div>
+                        <button type="submit" class="modal-btn">Sign In →</button>
+                        <div class="modal-footer-link">
+                            <a id="modalForgotPassword" href="javascript:void(0)">Forgot your password?</a>
+                        </div>
+                    </form>
+
+                    <!-- Register Form -->
+                    <form class="modal-form" id="modalRegisterForm">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" id="modalRegisterName" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" id="modalRegisterEmail" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" id="modalRegisterPassword" placeholder="Create a password (min 6 characters)" required minlength="6">
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm Password</label>
+                            <input type="password" id="modalRegisterConfirm" placeholder="Confirm your password" required>
+                        </div>
+                        <button type="submit" class="modal-btn">Create Account →</button>
+                    </form>
+
+                    <!-- Forgot Password Form -->
+                    <form class="modal-form" id="modalForgotForm">
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" id="modalForgotEmail" placeholder="your@email.com" required>
+                        </div>
+                        <button type="submit" class="modal-btn">Send Reset Link →</button>
+                        <div class="modal-footer-link">
+                            <a id="modalBackToLogin" href="javascript:void(0)">← Back to Sign In</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">lulutravel</a>
+                    <p>Premium small-group tours of China. Curated experiences, expert guides, and memories that last a lifetime.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618 6.98-6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="WeChat">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 0 1 .598.082l1.584.926a.272.272 0 0 0 .14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 0 1-.023-.156.49.49 0 0 1 .201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89l-.006-.033zm-3.61 2.852c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.969-.982z"/>
+                            </svg>
+                        </a>
+                        <a href="mailto:concierge@lulutravel.com" aria-label="Email">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <p style="margin-top: 16px; font-size: 0.875rem; color: var(--color-text-light);">
+                        <a href="mailto:concierge@lulutravel.com" style="color: var(--color-green-dark);">concierge@lulutravel.com</a>
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Tours</h4>
+                        <ul>
+                            <li><a href="product-classic.html">Classic China</a></li>
+                            <li><a href="product-culinary.html">Culinary Journey</a></li>
+                            <li><a href="product-nature.html">Nature & Wellness</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="faq.html">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 lulutravel. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

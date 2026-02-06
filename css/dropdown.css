@@ -1,0 +1,136 @@
+/* ===========================================
+   User Menu (Dropdown)
+   =========================================== */
+.user-menu-container {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* When inside nav-links, behave like a link */
+.nav-links .user-menu-container {
+    display: block;
+    vertical-align: baseline;
+}
+
+.user-menu-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--color-white);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav .user-menu-btn {
+    color: var(--color-white);
+}
+
+/* Fallback for when nav turns white on scroll */
+.nav.scrolled .user-menu-btn,
+nav.scrolled .user-menu-btn {
+    color: var(--color-text) !important;
+}
+
+.user-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 180px;
+    background: var(--color-white);
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    padding: 8px 0;
+    margin-top: 8px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1100;
+}
+
+/* Click to show dropdown - items directly visible */
+.user-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Bridge the gap */
+.user-dropdown::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+}
+
+.dropdown-item {
+    display: block;
+    padding: 12px 20px;
+    color: var(--color-ink);
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    text-align: left;
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    text-decoration: none;
+}
+
+.dropdown-item:hover {
+    background: var(--color-cream);
+    color: var(--color-green-dark);
+    padding-left: 24px;
+}
+
+.dropdown-divider {
+    height: 1px;
+    background: rgba(0,0,0,0.08);
+    margin: 8px 0;
+}
+
+.logout-btn {
+    color: #c0392b;
+}
+
+.logout-btn:hover {
+    background: #fdf2f2;
+    color: #c0392b;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .user-dropdown {
+        position: static;
+        width: 100%;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        background: rgba(0,0,0,0.05);
+        margin-top: 8px;
+        display: none;
+    }
+
+    .user-menu-container.active .user-dropdown {
+        display: block;
+    }
+
+    .user-menu-btn {
+        width: 100%;
+        justify-content: space-between;
+        padding: 12px 0;
+        color: var(--color-white) !important;
+    }
+
+    .user-menu-btn::after {
+        display: none;
+    }
+}

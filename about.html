@@ -1,695 +1,211 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>关于我们 | 隐逸旅行</title>
+    <title>About Us | lulutravel</title>
+    <meta name="description" content="Learn about lulutravel — premium small group tours of China with local experts and authentic experiences.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --color-primary: #1a3a2f;
-            --color-primary-dark: #0f241c;
-            --color-accent: #c9a962;
-            --color-text: #333;
-            --color-text-light: #666;
-            --color-white: #fff;
-            --color-cream: #faf9f7;
-            --font-serif-cn: 'Noto Serif SC', serif;
-            --font-serif-en: 'Cormorant Garamond', serif;
-            --transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: var(--font-serif-cn);
-            color: var(--color-text);
-            background-color: var(--color-cream);
-            line-height: 1.8;
-            font-weight: 300;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 2rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: var(--transition);
-        }
-
-        nav.scrolled {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 5%;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 400;
-            letter-spacing: 0.3em;
-            color: var(--color-white);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        nav.scrolled .logo {
-            color: var(--color-primary);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 3rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--color-white);
-            text-decoration: none;
-            font-size: 0.85rem;
-            letter-spacing: 0.15em;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        nav.scrolled .nav-links a {
-            color: var(--color-text);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--color-accent);
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .mobile-menu-btn span {
-            display: block;
-            width: 24px;
-            height: 1px;
-            background: var(--color-white);
-            margin: 6px 0;
-            transition: var(--transition);
-        }
-
-        nav.scrolled .mobile-menu-btn span {
-            background: var(--color-primary);
-        }
-
-        /* Page Hero */
-        .page-hero {
-            height: 60vh;
-            min-height: 400px;
-            background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .page-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"><rect fill="%231a3a2f" width="1920" height="1080"/><path fill="%230f241c" opacity="0.3" d="M0 540Q480 400 960 600T1920 500V1080H0V540Z"/></svg>') center/cover;
-            opacity: 0.4;
-        }
-
-        .page-hero-content {
-            text-align: center;
-            color: var(--color-white);
-            z-index: 1;
-            padding: 0 2rem;
-        }
-
-        .page-hero-subtitle {
-            font-family: var(--font-serif-en);
-            font-size: 0.85rem;
-            letter-spacing: 0.5em;
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-            opacity: 0.7;
-        }
-
-        .page-hero-title {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 300;
-            letter-spacing: 0.2em;
-        }
-
-        /* Section Common */
-        section {
-            padding: 8rem 5%;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 5rem;
-        }
-
-        .section-label {
-            font-family: var(--font-serif-en);
-            font-size: 0.75rem;
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
-            color: var(--color-accent);
-            margin-bottom: 1.5rem;
-            display: block;
-        }
-
-        .section-title {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            font-weight: 300;
-            letter-spacing: 0.15em;
-            color: var(--color-primary);
-        }
-
-        /* Brand Story */
-        .brand-story {
-            background: var(--color-white);
-        }
-
-        .story-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .story-intro {
-            text-align: center;
-            margin-bottom: 5rem;
-        }
-
-        .story-quote {
-            font-family: var(--font-serif-en);
-            font-size: 1.8rem;
-            font-style: italic;
-            color: var(--color-primary);
-            letter-spacing: 0.05em;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-
-        .story-divider {
-            width: 60px;
-            height: 1px;
-            background: var(--color-accent);
-            margin: 0 auto 3rem;
-        }
-
-        .story-text {
-            font-size: 1.05rem;
-            color: var(--color-text-light);
-            line-height: 2.4;
-            text-align: justify;
-            text-align-last: center;
-        }
-
-        .story-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .story-values {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 3rem;
-            margin-top: 5rem;
-            padding-top: 5rem;
-            border-top: 1px solid rgba(26, 58, 47, 0.1);
-        }
-
-        .value-item {
-            text-align: center;
-        }
-
-        .value-number {
-            font-family: var(--font-serif-en);
-            font-size: 3rem;
-            font-weight: 300;
-            color: var(--color-accent);
-            margin-bottom: 1rem;
-            opacity: 0.6;
-        }
-
-        .value-title {
-            font-size: 1rem;
-            letter-spacing: 0.2em;
-            color: var(--color-primary);
-            margin-bottom: 0.8rem;
-        }
-
-        .value-desc {
-            font-size: 0.85rem;
-            color: var(--color-text-light);
-            line-height: 1.8;
-        }
-
-        /* Philosophy */
-        .philosophy {
-            background: var(--color-cream);
-        }
-
-        .philosophy-content {
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .philosophy-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 4rem;
-            margin-top: 4rem;
-        }
-
-        .philosophy-card {
-            padding: 3rem;
-            background: var(--color-white);
-            border: 1px solid rgba(26, 58, 47, 0.08);
-            transition: var(--transition);
-        }
-
-        .philosophy-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
-        }
-
-        .philosophy-icon {
-            font-size: 2rem;
-            color: var(--color-accent);
-            margin-bottom: 1.5rem;
-        }
-
-        .philosophy-title {
-            font-size: 1.1rem;
-            letter-spacing: 0.15em;
-            color: var(--color-primary);
-            margin-bottom: 1rem;
-        }
-
-        .philosophy-text {
-            font-size: 0.9rem;
-            color: var(--color-text-light);
-            line-height: 2;
-        }
-
-        /* Team */
-        .team {
-            background: var(--color-white);
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .team-member {
-            text-align: center;
-        }
-
-        .member-photo {
-            width: 180px;
-            height: 180px;
-            margin: 0 auto 2rem;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .member-photo::before {
-            content: attr(data-initial);
-            font-family: var(--font-serif-en);
-            font-size: 4rem;
-            color: var(--color-accent);
-            opacity: 0.5;
-        }
-
-        .member-name {
-            font-size: 1.2rem;
-            letter-spacing: 0.15em;
-            color: var(--color-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .member-role {
-            font-family: var(--font-serif-en);
-            font-size: 0.8rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--color-accent);
-            margin-bottom: 1rem;
-        }
-
-        .member-bio {
-            font-size: 0.85rem;
-            color: var(--color-text-light);
-            line-height: 1.8;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: var(--color-primary);
-            color: var(--color-white);
-            text-align: center;
-            padding: 6rem 5%;
-        }
-
-        .cta-section .section-title {
-            color: var(--color-white);
-            margin-bottom: 1.5rem;
-        }
-
-        .cta-text {
-            font-size: 1rem;
-            opacity: 0.7;
-            margin-bottom: 3rem;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .btn-primary {
-            display: inline-block;
-            padding: 1.2rem 3rem;
-            border: 1px solid var(--color-accent);
-            color: var(--color-accent);
-            text-decoration: none;
-            font-size: 0.8rem;
-            letter-spacing: 0.3em;
-            transition: var(--transition);
-            background: transparent;
-            cursor: pointer;
-        }
-
-        .btn-primary:hover {
-            background: var(--color-accent);
-            color: var(--color-primary);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--color-primary-dark);
-            color: var(--color-white);
-            padding: 3rem 5%;
-            text-align: center;
-        }
-
-        .footer-logo {
-            font-size: 1.2rem;
-            letter-spacing: 0.3em;
-            margin-bottom: 1.5rem;
-            opacity: 0.9;
-        }
-
-        .footer-copy {
-            font-size: 0.75rem;
-            opacity: 0.5;
-            letter-spacing: 0.1em;
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .team-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .story-values {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            section {
-                padding: 5rem 5%;
-            }
-
-            .page-hero {
-                height: 50vh;
-            }
-
-            .team-grid {
-                grid-template-columns: 1fr;
-                max-width: 400px;
-            }
-
-            .philosophy-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .story-values {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
-            }
-
-            .story-quote {
-                font-size: 1.4rem;
-            }
-
-            .member-photo {
-                width: 150px;
-                height: 150px;
-            }
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500&family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Navigation -->
-    <nav id="navbar">
-        <a href="index.html" class="logo">隐逸</a>
-        <ul class="nav-links">
-            <li><a href="about.html">关于</a></li>
-            <li><a href="index.html#products">目的地</a></li>
-            <li><a href="index.html#contact">联系</a></li>
-        </ul>
-        <button class="mobile-menu-btn">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+    <nav class="nav" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">lulutravel</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#trips">Our Trips</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li id="auth-item-container"><a href="login.html" class="nav-cta" id="authLink">Sign In</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
     </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="nav-overlay" id="navOverlay"></div>
 
     <!-- Page Hero -->
     <section class="page-hero">
-        <div class="page-hero-content">
-            <p class="page-hero-subtitle">Our Story</p>
-            <h1 class="page-hero-title">关于我们</h1>
+        <div class="container">
+            <span class="section-label">About Us</span>
+            <h1 class="section-title">Discover the Real China</h1>
+            <p class="section-desc">Small group tours (2-8 people) · Expert local guides · Hidden gems you won't find online</p>
         </div>
     </section>
 
-    <!-- Brand Story -->
-    <section class="brand-story">
-        <div class="section-header">
-            <span class="section-label">Brand Story</span>
-            <h2 class="section-title">品牌故事</h2>
-        </div>
-        <div class="story-container">
-            <div class="story-intro">
-                <p class="story-quote">"Authentic Travel Experience"</p>
-                <div class="story-divider"></div>
-            </div>
-            <div class="story-text">
-                <p>
-                    隐逸诞生于对纯粹旅行体验的执着追求。在这个信息爆炸的时代，我们发现越来越多的旅行者渴望逃离喧嚣，寻找真正属于自己的宁静时刻。
-                </p>
-                <p>
-                    我们的创始人曾游历世界五十余国，却始终对那些人迹罕至的秘境念念不忘——北极圈内静静守候极光的雪原、马尔代夫私人岛屿上的星空晚宴、不丹山谷中的禅修晨钟。这些体验无法从攻略中复制，唯有亲历者方知其中真味。
-                </p>
-                <p>
-                    于是，隐逸应运而生。我们不贩卖行程，而是为您开启通往世界隐秘角落的门。每一次出发，都是一次与自我对话的旅程；每一处目的地，都承载着我们对"Authentic"的坚守——真实、独特、不可替代。
-                </p>
-            </div>
-            <div class="story-values">
-                <div class="value-item">
-                    <div class="value-number">12</div>
-                    <h3 class="value-title">年深耕</h3>
-                    <p class="value-desc">专注高端定制旅行领域</p>
-                </div>
-                <div class="value-item">
-                    <div class="value-number">50+</div>
-                    <h3 class="value-title">目的地</h3>
-                    <p class="value-desc">覆盖全球隐秘奢享之境</p>
-                </div>
-                <div class="value-item">
-                    <div class="value-number">2000+</div>
-                    <h3 class="value-title">客户</h3>
-                    <p class="value-desc">信赖之选，口碑相传</p>
-                </div>
-            </div>
+    <!-- Story Section -->
+    <section class="page-content">
+        <div class="container" style="max-width: 800px;">
+            <h2 style="font-family: var(--font-serif); font-size: 2rem; color: var(--color-ink); margin-bottom: 24px;">Our Story</h2>
+            <p style="font-size: 1.05rem; color: var(--color-text-light); line-height: 1.9; margin-bottom: 24px;">
+                We started lulutravel with a simple belief: China deserves to be seen differently. Not from a tour bus with 40 strangers, but walking ancient pathways with someone who knows every hidden corner.
+            </p>
+            <p style="font-size: 1.05rem; color: var(--color-text-light); line-height: 1.9; margin-bottom: 24px;">
+                Our guides grew up in China. They've walked the Great Wall before sunrise, know the best dumpling shop in every neighborhood, and have stories that guidebooks will never tell you.
+            </p>
+            <p style="font-size: 1.05rem; color: var(--color-text-light); line-height: 1.9;">
+                We keep groups small (2-8 people) because big groups rush. Small groups wander. They stop when they see something interesting. They eat when they're hungry. They leave space for the unexpected — and that's where the best memories happen.
+            </p>
         </div>
     </section>
 
     <!-- Philosophy -->
-    <section class="philosophy">
-        <div class="section-header">
-            <span class="section-label">Philosophy</span>
-            <h2 class="section-title">品牌理念</h2>
+    <section style="padding: 80px 0; background: var(--color-white);">
+        <div class="container" style="max-width: 800px;">
+            <h2 style="font-family: var(--font-serif); font-size: 2rem; color: var(--color-ink); margin-bottom: 24px;">What We Believe</h2>
+            
+            <div style="margin-bottom: 40px;">
+                <h3 style="font-family: var(--font-serif); font-size: 1.3rem; color: var(--color-green-dark); margin-bottom: 12px;">Small Groups, Big Experiences</h3>
+                <p style="font-size: 1rem; color: var(--color-text-light); line-height: 1.8;">2-8 people max. No crowded buses. Real connections with your guide and fellow travelers.</p>
+            </div>
+            
+            <div style="margin-bottom: 40px;">
+                <h3 style="font-family: var(--font-serif); font-size: 1.3rem; color: var(--color-green-dark); margin-bottom: 12px;">Local Experts</h3>
+                <p style="font-size: 1rem; color: var(--color-text-light); line-height: 1.8;">Our guides know China intimately. They'll take you places tourists never find and share stories you'd miss otherwise.</p>
+            </div>
+            
+            <div style="margin-bottom: 40px;">
+                <h3 style="font-family: var(--font-serif); font-size: 1.3rem; color: var(--color-green-dark); margin-bottom: 12px;">All-Inclusive</h3>
+                <p style="font-size: 1rem; color: var(--color-text-light); line-height: 1.8;">Hotels, meals, transport, tickets — all covered. Just show up. We handle everything else.</p>
+            </div>
+            
+            <div>
+                <h3 style="font-family: var(--font-serif); font-size: 1.3rem; color: var(--color-green-dark); margin-bottom: 12px;">24/7 Support</h3>
+                <p style="font-size: 1rem; color: var(--color-text-light); line-height: 1.8;">Questions before you go? Issues on the road? Reach us anytime. We're here for you.</p>
+            </div>
         </div>
-        <div class="philosophy-content">
-            <p class="story-text" style="margin-bottom: 0;">
-                我们相信，真正的奢华不在于价格的堆砌，而在于体验的不可替代。<br>
-                隐逸的每一次服务，都秉持以下核心理念：
-            </p>
-            <div class="philosophy-grid">
-                <div class="philosophy-card">
-                    <div class="philosophy-icon">◆</div>
-                    <h3 class="philosophy-title">深度而非广度</h3>
-                    <p class="philosophy-text">拒绝走马观花的打卡式旅行，专注于每一个目的地的深度体验。在隐逸的旅程中，您将有足够的时间去聆听、去感受、去融入。</p>
+    </section>
+
+    <!-- Stats -->
+    <section style="padding: 80px 0; background: var(--color-green-dark); color: var(--color-white);">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 60px; text-align: center;">
+                <div>
+                    <div style="font-family: var(--font-serif); font-size: 3rem; font-weight: 300; margin-bottom: 8px;">500+</div>
+                    <div style="font-size: 0.9rem; opacity: 0.8; letter-spacing: 0.1em;">Happy Travelers</div>
                 </div>
-                <div class="philosophy-card">
-                    <div class="philosophy-icon">◇</div>
-                    <h3 class="philosophy-title">私密而非喧嚣</h3>
-                    <p class="philosophy-text">我们精选的每一处目的地，都远离人群与喧嚣。在这里，您拥有的不仅是风景，更是属于自己的时空。</p>
+                <div>
+                    <div style="font-family: var(--font-serif); font-size: 3rem; font-weight: 300; margin-bottom: 8px;">50+</div>
+                    <div style="font-size: 0.9rem; opacity: 0.8; letter-spacing: 0.1em;">Expert Guides</div>
                 </div>
-                <div class="philosophy-card">
-                    <div class="philosophy-icon">◈</div>
-                    <h3 class="philosophy-title">真实而非表演</h3>
-                    <p class="philosophy-text">我们连接的是当地最真实的文化与人文，而非为游客设计的表演。每一次交流，都是心与心的真诚触碰。</p>
-                </div>
-                <div class="philosophy-card">
-                    <div class="philosophy-icon">◉</div>
-                    <h3 class="philosophy-title">专属而非标准</h3>
-                    <p class="philosophy-text">没有两套完全相同的隐逸行程。我们倾听您的需求，理解您的期待，为您量身打造独一无二的旅行记忆。</p>
+                <div>
+                    <div style="font-family: var(--font-serif); font-size: 3rem; font-weight: 300; margin-bottom: 8px;">98%</div>
+                    <div style="font-size: 0.9rem; opacity: 0.8; letter-spacing: 0.1em;">Recommend Us</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Team -->
-    <section class="team">
-        <div class="section-header">
-            <span class="section-label">Our Team</span>
-            <h2 class="section-title">核心团队</h2>
+    <!-- CTA -->
+    <section class="cta">
+        <div class="cta-bg">
+            <img src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=1920&q=80" alt="China">
         </div>
-        <div class="team-grid">
-            <div class="team-member">
-                <div class="member-photo" data-initial="L"></div>
-                <h3 class="member-name">林清远</h3>
-                <p class="member-role">创始人 / CEO</p>
-                <p class="member-bio">前资深旅行作家，足迹遍布全球六大洲。用十二年时间寻找世界上最隐秘的角落，致力于将Authentic的旅行理念带给每一位客人。</p>
-            </div>
-            <div class="team-member">
-                <div class="member-photo" data-initial="S"></div>
-                <h3 class="member-name">苏婉仪</h3>
-                <p class="member-role">首席旅行设计师</p>
-                <p class="member-bio">拥有十年高端定制旅行策划经验，曾服务于安缦、四季等顶级酒店集团。善于倾听客户需求，将梦想转化为完美的行程。</p>
-            </div>
-            <div class="team-member">
-                <div class="member-photo" data-initial="Z"></div>
-                <h3 class="member-name">张牧野</h3>
-                <p class="member-role">运营总监</p>
-                <p class="member-bio">前外交官，精通多国语言与礼仪。负责全球目的地资源整合与合作伙伴管理，确保每一次出行都无懈可击。</p>
-            </div>
-            <div class="team-member">
-                <div class="member-photo" data-initial="C"></div>
-                <h3 class="member-name">陈诗涵</h3>
-                <p class="member-role">客户体验总监</p>
-                <p class="member-bio">拥有敏锐的服务洞察力和细腻的情感共鸣。24小时待命，为客人提供全程无忧的贴心陪伴，让每一段旅程都成为美好回忆。</p>
-            </div>
+        <div class="cta-overlay"></div>
+        <div class="cta-content">
+            <h2 class="cta-title">Ready to Discover China?</h2>
+            <p class="cta-desc">Let us craft your perfect adventure.</p>
+            <a href="product-classic.html" class="cta-btn">Explore Our Trips</a>
         </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <h2 class="section-title">开启您的隐逸之旅</h2>
-        <p class="cta-text">每一次出发，都是与世界的一次私密约会。<br>让我们为您创造下一个难忘的瞬间。</p>
-        <a href="index.html#contact" class="btn-primary">预约咨询</a>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <p class="footer-logo">隐逸</p>
-        <p class="footer-copy">© 2025 YINYI TRAVEL. ALL RIGHTS RESERVED.</p>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <span class="logo">lulutravel</span>
+                    <p>Premium small-group tours of China. Curated experiences, expert guides, and memories that last a lifetime.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618 6.98-6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="WeChat">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 0 1 .598.082l1.584.926a.272.272 0 0 0 .14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 0 1-.023-.156.49.49 0 0 1 .201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89l-.006-.033zm-3.61 2.852c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.969-.982z"/>
+                            </svg>
+                        </a>
+                        <a href="mailto:concierge@lulutravel.com" aria-label="Email">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <p style="margin-top: 16px; font-size: 0.875rem; color: var(--color-text-light);">
+                        <a href="mailto:concierge@lulutravel.com" style="color: var(--color-green-dark);">concierge@lulutravel.com</a>
+                    </p>
+                </div>
+                <div>
+                    <h4 class="footer-title">Tours</h4>
+                    <ul class="footer-links">
+                        <li><a href="product-classic.html">Classic China</a></li>
+                        <li><a href="product-culinary.html">Culinary Journey</a></li>
+                        <li><a href="product-nature.html">Nature & Wellness</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 lulutravel. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth.js"></script>
     <script>
         // Navbar scroll effect
-        const navbar = document.getElementById('navbar');
-        let lastScroll = 0;
-
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            
-            if (currentScroll > 50) {
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
             }
-            
-            lastScroll = currentScroll;
         });
 
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+            const navOverlay = document.getElementById('navOverlay');
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
+            if (hamburger && navLinks) {
+                hamburger.addEventListener('click', function() {
+                    hamburger.classList.toggle('active');
+                    navLinks.classList.toggle('active');
+                    navOverlay.classList.toggle('active');
+                    document.body.classList.toggle('menu-open');
+                });
 
-        // Observe elements
-        document.querySelectorAll('.section-header, .story-container, .philosophy-content, .team-grid, .cta-section').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-            observer.observe(el);
+                navOverlay.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                    navOverlay.classList.remove('active');
+                    document.body.classList.remove('menu-open');
+                });
+            }
         });
     </script>
+    <script src="js/main.js"></script>
 </body>
 </html>
