@@ -1125,6 +1125,31 @@
                 }
             });
         });
+
+        // Scroll animations with IntersectionObserver
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateElements = document.querySelectorAll('.trip-card, .testimonial-card, .stat-item');
+            
+            // Add animation class for detection
+            animateElements.forEach(el => {
+                el.classList.add('animate-on-scroll');
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            });
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+            animateElements.forEach(el => observer.observe(el));
+        });
     </script>
 </body>
 </html>
